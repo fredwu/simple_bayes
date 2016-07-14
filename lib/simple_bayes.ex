@@ -10,8 +10,8 @@ defmodule SimpleBayes do
     agent
   end
 
-  def default_weight,      do: @default_weight
-  def mininum_probability, do: @mininum_probability
+  def default_weight,      do: Application.get_env(:simple_bayes, :default_weight)
+  def mininum_probability, do: Application.get_env(:simple_bayes, :mininum_probability)
 
   defdelegate train(agent, category, string, opts \\ []), to: SimpleBayes.Trainer
   defdelegate classify(agent, string),                    to: SimpleBayes.Classifier
