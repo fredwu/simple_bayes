@@ -3,7 +3,7 @@ defmodule SimpleBayes.Mixfile do
 
   def project do
     [app: :simple_bayes,
-     version: "0.1.0",
+     version: "0.1.1",
      elixir: "~> 1.3",
      name: "Simple Bayes",
      package: package(),
@@ -18,7 +18,7 @@ defmodule SimpleBayes.Mixfile do
   end
 
   defp deps do
-    []
+    [{:ex_doc, ">= 0.0.0", only: :dev}]
   end
 
   defp package do
