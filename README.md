@@ -7,7 +7,7 @@ A Simple Bayes (a.k.a. [Naive Bayes](https://en.wikipedia.org/wiki/Naive_Bayes_c
 - [x] Naive Bayes algorithm
 - [x] no external dependencies
 - [x] optional keywords weighting
-- [ ] ignore English stop words
+- [x] ignore English stop words
 - [ ] [additive smoothing](https://en.wikipedia.org/wiki/Additive_smoothing)
 
 ## API

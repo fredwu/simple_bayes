@@ -11,7 +11,7 @@ defmodule SimpleBayes.TrainerTest do
     result = meta.agent
              |> SimpleBayes.train(:cat, "nice cute cat")
              |> SimpleBayes.train(:dog, "nice dog", weight: 2)
-             |> SimpleBayes.train(:dog, "cute dog")
+             |> SimpleBayes.train(:dog, "is cute dog")
 
     assert Agent.get(result, &(&1)) == %SimpleBayes{
       categories: %{

@@ -19,6 +19,19 @@ defmodule SimpleBayes.Tokenizer do
   end
 
   @doc """
+  ## Examples
+
+      iex> SimpleBayes.Tokenizer.filter_out(["foo", "bar", "baz"], ["baz"])
+      ["foo", "bar"]
+
+      iex> SimpleBayes.Tokenizer.filter_out(["foo", "bar", "baz"], ["baz", "bazz"])
+      ["foo", "bar"]
+  """
+  def filter_out(list, filter_list) do
+    list -- filter_list
+  end
+
+  @doc """
   ## Examples
 
       iex> SimpleBayes.Tokenizer.accumulate(%{}, [:cat, :dog], 1)

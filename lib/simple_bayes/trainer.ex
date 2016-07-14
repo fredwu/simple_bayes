@@ -9,8 +9,11 @@ defmodule SimpleBayes.Trainer do
   end
 
   defp parse_tokens(data, string, opts) do
-    new_tokens = Tokenizer.tokenize(string)
-    tokens     = Tokenizer.accumulate(data.tokens, new_tokens, weight(opts))
+    new_tokens = string
+                 |> Tokenizer.tokenize()
+                 |> Tokenizer.filter_out(SimpleBayes.stop_words)
+
+    tokens = Tokenizer.accumulate(data.tokens, new_tokens, weight(opts))
 
     data = %{data | tokens: tokens}
 

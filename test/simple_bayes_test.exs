@@ -36,6 +36,14 @@ defmodule SimpleBayesTest do
     end
   end
 
+  test "stop words" do
+    result = SimpleBayes.init
+             |> SimpleBayes.train(:apple, "it is so much red")
+             |> SimpleBayes.train(:banana, "it is a bit yellow")
+
+    assert SimpleBayes.classify_one(result, "it is so much yellow") == :banana
+  end
+
   # https://github.com/jekyll/classifier-reborn/tree/3488245735905187713823ea731fc353634d8763
   describe "interesting and uninteresting" do
     setup do
