@@ -13,7 +13,7 @@ defmodule SimpleBayes.Classifier do
 
   defp probabilities(data, string) do
     tokens = Tokenizer.tokenize(string)
-             |> Tokenizer.map_values(SimpleBayes.mininum_probability)
+             |> Tokenizer.map_values(SimpleBayes.smoothing)
 
     prior_prob = Accumulator.all(data.tokens)
 

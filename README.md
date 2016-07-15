@@ -8,7 +8,8 @@ A Simple Bayes (a.k.a. [Naive Bayes](https://en.wikipedia.org/wiki/Naive_Bayes_c
 - [x] no external dependencies
 - [x] optional keywords weighting
 - [x] ignore English stop words
-- [ ] [additive smoothing](https://en.wikipedia.org/wiki/Additive_smoothing)
+- [x] [additive smoothing](https://en.wikipedia.org/wiki/Additive_smoothing)
+- [ ] [tf-idf](https://en.wikipedia.org/wiki/Tf-idf)
 
 ## API
 

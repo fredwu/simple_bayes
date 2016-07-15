@@ -1,7 +1,7 @@
 use Mix.Config
 
 config :simple_bayes, default_weight: 1
-config :simple_bayes, mininum_probability: 0.001
+config :simple_bayes, smoothing: 0.001
 config :simple_bayes, stop_words: ~w(
   a about above after again against all am an and any are aren't as at be
   because been before being below between both but by can't cannot could
