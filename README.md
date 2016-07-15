@@ -5,11 +5,11 @@ A Simple Bayes (a.k.a. [Naive Bayes](https://en.wikipedia.org/wiki/Naive_Bayes_c
 ## Features
 
 - [x] Naive Bayes algorithm
-- [x] no external dependencies
-- [x] optional keywords weighting
-- [x] ignore English stop words
-- [x] [additive smoothing](https://en.wikipedia.org/wiki/Additive_smoothing)
-- [ ] [tf-idf](https://en.wikipedia.org/wiki/Tf-idf)
+- [x] No external dependencies
+- [x] Optional keywords weighting
+- [x] Ignores English stop words
+- [x] [Additive smoothing](https://en.wikipedia.org/wiki/Additive_smoothing)
+- [ ] [TF-IDF](https://en.wikipedia.org/wiki/Tf-idf)
 
 ## API
 
