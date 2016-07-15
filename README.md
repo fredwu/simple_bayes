@@ -1,4 +1,4 @@
-# Simple Bayes
+# Simple Bayes [![Travis](https://img.shields.io/travis/fredwu/simple_bayes.svg?maxAge=2592000)](https://travis-ci.org/fredwu/simple_bayes) [![Hex.pm](https://img.shields.io/hexpm/v/simple_bayes.svg?maxAge=2592000)](https://hex.pm/packages/simple_bayes)
 
 A Simple Bayes (a.k.a. [Naive Bayes](https://en.wikipedia.org/wiki/Naive_Bayes_classifier)) implementation in Elixir.
 
