@@ -42,6 +42,9 @@ defmodule SimpleBayes.Tokenizer do
 
       iex> SimpleBayes.Tokenizer.accumulate(%{cat: 1, fish: 1}, [:cat, :dog], 2)
       %{cat: 3, fish: 1, dog: 2}
+
+      iex> SimpleBayes.Tokenizer.accumulate(%{cat: 1, fish: 1}, [:cat, :cat, :dog], 1)
+      %{cat: 3, fish: 1, dog: 1}
   """
   def accumulate(map, list, acc_size) do
     list
@@ -54,8 +57,15 @@ defmodule SimpleBayes.Tokenizer do
 
       iex> SimpleBayes.Tokenizer.map_values([:cat, :dog], 1)
       %{cat: 1, dog: 1}
+
+      iex> SimpleBayes.Tokenizer.map_values([:cat, :cat, :dog], 1)
+      %{cat: 2, dog: 1}
   """
   def map_values(list, value) do
-    Enum.reduce(list, %{}, fn (x, acc) -> Map.put(acc, x, value) end)
+    Enum.reduce(list, %{}, fn (k, acc) ->
+      v = if acc[k], do: value + acc[k], else: value
+
+      Map.put(acc, k, v)
+    end)
   end
 end
