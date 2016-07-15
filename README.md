@@ -28,11 +28,11 @@ bayes |> SimpleBayes.classify_one("Maybe green maybe red but definitely round an
 # => :apple
 
 bayes |> SimpleBayes.classify("Maybe green maybe red but definitely round and sweet.")
-# => %{
-#   apple:  -10.492915521902894,
-#   orange: -12.544068044350276,
-#   banana: -14.706795341847975
-# }
+# => [
+#   apple:  -15.492915521902894,
+#   orange: -18.544068044350276,
+#   banana: -21.706795341847975
+# ]
 ```
 
 ## License

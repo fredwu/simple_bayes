@@ -24,11 +24,11 @@ defmodule SimpleBayesTest do
     end
 
     test "README example on .classify", meta do
-      assert SimpleBayes.classify(meta.result, "Maybe green maybe red but definitely round and sweet") == %{
+      assert SimpleBayes.classify(meta.result, "Maybe green maybe red but definitely round and sweet") == [
         apple:  -15.492915521902894,
         orange: -18.544068044350276,
         banana: -21.706795341847975
-      }
+      ]
     end
 
     test "README example on .classify_one", meta do
@@ -42,6 +42,20 @@ defmodule SimpleBayesTest do
              |> SimpleBayes.train(:banana, "it is a bit yellow")
 
     assert SimpleBayes.classify_one(result, "it is so much yellow") == :banana
+  end
+
+  test "ordering" do
+    result = SimpleBayes.init
+             |> SimpleBayes.train(:apple, "red", weight: 100)
+             |> SimpleBayes.train(:banana, "red", weight: 0.01)
+             |> SimpleBayes.train(:orange, "red", weight: 10)
+             |> SimpleBayes.classify("red")
+
+    assert result == [
+      apple:  1.9585678353197349,
+      orange: -0.04143216468026514,
+      banana: -6.041432164680265
+    ]
   end
 
   # https://github.com/jekyll/classifier-reborn/tree/3488245735905187713823ea731fc353634d8763

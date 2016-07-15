@@ -19,6 +19,6 @@ defmodule SimpleBayes.ClassifierTest do
 
   test ".classify", meta do
     assert SimpleBayes.classify(meta.agent, "such a nice and cute dog")
-           == %{dog: -11.640978057358332, cat: -12.367976785294594}
+           == [dog: -11.640978057358332, cat: -12.367976785294594]
   end
 end

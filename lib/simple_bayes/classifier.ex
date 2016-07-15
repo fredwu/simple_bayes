@@ -2,15 +2,13 @@ defmodule SimpleBayes.Classifier do
   alias SimpleBayes.{Accumulator, Tokenizer}
 
   def classify(agent, string) do
-    Agent.get(agent, &(&1)) |> probabilities(string)
+    Agent.get(agent, &(&1))
+    |> probabilities(string)
+    |> Enum.sort(&(elem(&1,1) > elem(&2,1)))
   end
 
   def classify_one(agent, string) do
-    {category, _probability} = classify(agent, string)
-                               |> Enum.sort(&(elem(&1,1) > elem(&2,1)))
-                               |> List.first
-
-    category
+    classify(agent, string) |> Enum.at(0) |> elem(0)
   end
 
   defp probabilities(data, string) do
@@ -33,7 +31,6 @@ defmodule SimpleBayes.Classifier do
                  |> Map.merge(filtered_tokens)
                  |> Map.values()
                  |> Enum.reduce(1, &(&1*&2))
-
 
     :math.log10(likelihood * base_rate)
   end
