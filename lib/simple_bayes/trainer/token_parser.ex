@@ -4,7 +4,7 @@ defmodule SimpleBayes.Trainer.TokenParser do
   @doc """
   Parses a training string into tokens.
 
-  ## Examples
+  ## Examples
 
       iex> SimpleBayes.Trainer.TokenParser.parse(
       iex>   %SimpleBayes{},

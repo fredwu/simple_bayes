@@ -4,7 +4,7 @@ defmodule SimpleBayes.Classifier.Probability do
   @doc """
   Calculates the probabilities for the categories based on the training set.
 
-  ## Examples
+  ## Examples
 
       iex> SimpleBayes.Classifier.Probability.for_collection(
       iex>   %SimpleBayes{

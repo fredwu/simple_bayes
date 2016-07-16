@@ -4,7 +4,7 @@ defmodule SimpleBayes.Trainer.TokenRecorder do
   @doc """
   Records the tokens from each training.
 
-  ## Examples
+  ## Examples
 
       iex> SimpleBayes.Trainer.TokenRecorder.record(
       iex>   {

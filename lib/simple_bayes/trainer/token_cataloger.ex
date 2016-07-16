@@ -4,7 +4,7 @@ defmodule SimpleBayes.Trainer.TokenCataloger do
   @doc """
   Catalogs tokens based on their training categories.
 
-  ## Examples
+  ## Examples
 
       iex> SimpleBayes.Trainer.TokenCataloger.catalog(
       iex>   {
