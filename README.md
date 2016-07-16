@@ -4,12 +4,12 @@ A Simple Bayes (a.k.a. [Naive Bayes](https://en.wikipedia.org/wiki/Naive_Bayes_c
 
 ## Features
 
-- [x] Naive Bayes algorithm
+- [x] Multinomial Naive Bayes algorithm
 - [x] No external dependencies
-- [x] Optional keywords weighting
 - [x] Ignores English stop words
 - [x] [Additive smoothing](https://en.wikipedia.org/wiki/Additive_smoothing)
-- [ ] [TF-IDF](https://en.wikipedia.org/wiki/Tf-idf)
+- [x] [TF-IDF](https://en.wikipedia.org/wiki/Tf-idf)
+- [x] Optional keywords weighting
 
 ## API
 
@@ -30,9 +30,9 @@ bayes |> SimpleBayes.classify_one("Maybe green maybe red but definitely round an
 
 bayes |> SimpleBayes.classify("Maybe green maybe red but definitely round and sweet.")
 # => [
-#   apple:  -15.492915521902894,
-#   orange: -18.544068044350276,
-#   banana: -21.706795341847975
+#   apple:  0.18519202529366116,
+#   orange: 0.14447781772131096,
+#   banana: 0.10123406763124557
 # ]
 ```
 

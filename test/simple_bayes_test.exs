@@ -25,9 +25,9 @@ defmodule SimpleBayesTest do
 
     test "README example on .classify", meta do
       assert SimpleBayes.classify(meta.result, "Maybe green maybe red but definitely round and sweet") == [
-        apple:  -15.492915521902894,
-        orange: -18.544068044350276,
-        banana: -21.706795341847975
+        apple:  0.18519202529366116,
+        orange: 0.14447781772131096,
+        banana: 0.10123406763124557
       ]
     end
 
@@ -38,7 +38,7 @@ defmodule SimpleBayesTest do
 
   test "stop words" do
     result = SimpleBayes.init
-             |> SimpleBayes.train(:apple, "it is so much red")
+             |> SimpleBayes.train(:apple, "it is so red")
              |> SimpleBayes.train(:banana, "it is a bit yellow")
 
     assert SimpleBayes.classify_one(result, "it is so much yellow") == :banana
@@ -51,11 +51,17 @@ defmodule SimpleBayesTest do
              |> SimpleBayes.train(:orange, "red", weight: 10)
              |> SimpleBayes.classify("red")
 
-    assert result == [
-      apple:  1.9585678353197349,
-      orange: -0.04143216468026514,
-      banana: -6.041432164680265
-    ]
+    assert Keyword.keys(result) == [:apple, :orange, :banana]
+  end
+
+  test "IDF (Inverse Document Frequency)" do
+    result = SimpleBayes.init
+             |> SimpleBayes.train(:apple, "red red fruit")
+             |> SimpleBayes.train(:banana, "yellow yellow fruit")
+             |> SimpleBayes.train(:orange, "orange yellow fruit")
+             |> SimpleBayes.classify("red yellow fruit")
+
+    assert result[:apple] > result[:banana]
   end
 
   # https://github.com/jekyll/classifier-reborn/tree/3488245735905187713823ea731fc353634d8763

@@ -1,5 +1,5 @@
 defmodule SimpleBayes do
-  defstruct categories: %{}, tokens: %{}
+  defstruct categories: %{}, trainings: 0, tokens: %{}, tokens_per_training: []
 
   def init do
     {:ok, agent} = Agent.start_link fn -> %SimpleBayes{} end

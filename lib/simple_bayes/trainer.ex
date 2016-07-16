@@ -4,33 +4,51 @@ defmodule SimpleBayes.Trainer do
   def train(agent, category, string, opts) do
     Agent.get(agent, &(&1))
     |> parse_tokens(string, opts)
+    |> record_tokens(category, opts)
     |> catalog(category, opts)
+    |> update_counter()
     |> update(agent)
   end
 
   defp parse_tokens(data, string, opts) do
-    new_tokens = string
-                 |> Tokenizer.tokenize()
-                 |> Tokenizer.filter_out(SimpleBayes.stop_words)
+    tokens = string
+             |> Tokenizer.tokenize()
+             |> Tokenizer.filter_out(SimpleBayes.stop_words)
 
-    tokens = Tokenizer.accumulate(data.tokens, new_tokens, weight(opts))
+    tokens_map = Tokenizer.accumulate(data.tokens, tokens, weight(opts))
 
-    data = %{data | tokens: tokens}
+    data = %{data | tokens: tokens_map}
 
-    {new_tokens, data}
+    {tokens, data}
+  end
+
+  defp record_tokens({tokens, data}, category, opts) do
+    tokens_map          = Tokenizer.accumulate(%{}, tokens, weight(opts))
+    tokens_per_training = data.tokens_per_training ++ [{category, tokens_map}]
+
+    data = %{data | tokens_per_training: tokens_per_training}
+
+    {tokens, data}
   end
 
   defp catalog({tokens, data}, category, opts) do
-    categories = merge_categories(data.categories, category, tokens, opts)
+    cat_tokens_list = data.categories[category] || [trainings: 0, tokens: %{}]
+
+    trainings_count = cat_tokens_list[:trainings] + 1
+    cat_tokens_map  = cat_tokens_list[:tokens]
+    tokens_map      = Tokenizer.accumulate(cat_tokens_map, tokens, weight(opts))
+
+    categories = Map.put(data.categories, category, [
+      trainings: trainings_count, tokens: tokens_map
+    ])
 
     %{data | categories: categories}
   end
 
-  defp merge_categories(categories, category, tokens, opts) do
-    cat_tokens = categories[category] || %{}
-    tokens     = Tokenizer.accumulate(cat_tokens, tokens, weight(opts))
+  defp update_counter(data) do
+    counter = data.trainings + 1
 
-    Map.put(categories, category, tokens)
+    %{data | trainings: counter}
   end
 
   defp update(data, agent) do

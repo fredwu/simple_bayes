@@ -6,9 +6,10 @@ defmodule SimpleBayes.ClassifierTest do
   setup do
     data = %SimpleBayes{
       categories: %{
-        cat: %{"nice" => 1, "cute" => 1, "cat" => 1},
-        dog: %{"nice" => 2, "dog" => 2}
+        cat: [trainings: 1, tokens: %{"nice" => 1, "cute" => 1, "cat" => 1}],
+        dog: [trainings: 1, tokens: %{"nice" => 2, "dog" => 2}]
       },
+      trainings: 2,
       tokens: %{"nice" => 3, "cute" => 1, "cat" => 1, "dog" => 2}
     }
 
@@ -18,7 +19,9 @@ defmodule SimpleBayes.ClassifierTest do
   end
 
   test ".classify", meta do
-    assert SimpleBayes.classify(meta.agent, "such a nice and cute dog")
-           == [dog: -11.640978057358332, cat: -12.367976785294594]
+    assert SimpleBayes.classify(meta.agent, "such a nice and cute dog") == [
+      dog: 0.39960988629793276,
+      cat: 0.20472854071377028
+    ]
   end
 end
