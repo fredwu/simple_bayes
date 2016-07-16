@@ -1,5 +1,7 @@
 defmodule SimpleBayes.TfIdf do
   @doc """
+  Calculates the TF-IDF.
+
   ## Examples
 
       iex> SimpleBayes.TfIdf.call(2, 0, 1)

@@ -2,6 +2,8 @@ defmodule SimpleBayes.Trainer.TokenParser do
   alias SimpleBayes.{Tokenizer, Trainer.TokenWeight}
 
   @doc """
+  Parses a training string into tokens.
+
   ## Examples
 
       iex> SimpleBayes.Trainer.TokenParser.parse(

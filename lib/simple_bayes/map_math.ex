@@ -2,6 +2,8 @@ defmodule SimpleBayes.MapMath do
   alias SimpleBayes.Accumulator
 
   @doc """
+  Calculates the fraction.
+
   ## Examples
 
       iex> SimpleBayes.MapMath.fraction(

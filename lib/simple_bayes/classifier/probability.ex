@@ -2,6 +2,8 @@ defmodule SimpleBayes.Classifier.Probability do
   alias SimpleBayes.{Accumulator, MapMath, TfIdf}
 
   @doc """
+  Calculates the probabilities for the categories based on the training set.
+
   ## Examples
 
       iex> SimpleBayes.Classifier.Probability.for_collection(

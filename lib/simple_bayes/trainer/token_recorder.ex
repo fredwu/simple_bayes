@@ -2,6 +2,8 @@ defmodule SimpleBayes.Trainer.TokenRecorder do
   alias SimpleBayes.{Tokenizer, Trainer.TokenWeight}
 
   @doc """
+  Records the tokens from each training.
+
   ## Examples
 
       iex> SimpleBayes.Trainer.TokenRecorder.record(

@@ -1,5 +1,7 @@
 defmodule SimpleBayes.Accumulator do
   @doc """
+  Accumulates the values from the map.
+
   ## Examples
 
       iex> SimpleBayes.Accumulator.all(%{"nice" => 3, "cute" => 1, "cat" => 1, "dog" => 2})
@@ -13,6 +15,8 @@ defmodule SimpleBayes.Accumulator do
   end
 
   @doc """
+  Accumulates the values of the given keys from the map.
+
   ## Examples
 
       iex> SimpleBayes.Accumulator.only(%{"nice" => 3, "cute" => 1, "cat" => 1, "dog" => 2}, ["nice", "cute"])
@@ -26,6 +30,8 @@ defmodule SimpleBayes.Accumulator do
   end
 
   @doc """
+  Accumulates the number of maps containing the specified key.
+
   ## Examples
 
       iex> SimpleBayes.Accumulator.occurance([

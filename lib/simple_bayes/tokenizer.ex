@@ -1,5 +1,7 @@
 defmodule SimpleBayes.Tokenizer do
   @doc """
+  Converts a string into a list of words.
+
   ## Examples
 
       iex> SimpleBayes.Tokenizer.tokenize("foobar")
@@ -22,6 +24,8 @@ defmodule SimpleBayes.Tokenizer do
   end
 
   @doc """
+  Filters out a list based on another list.
+
   ## Examples
 
       iex> SimpleBayes.Tokenizer.filter_out(["foo", "bar", "baz"], ["baz"])
@@ -35,6 +39,8 @@ defmodule SimpleBayes.Tokenizer do
   end
 
   @doc """
+  Converts a list with a value into a map, and merges the maps with accumulated values.
+
   ## Examples
 
       iex> SimpleBayes.Tokenizer.accumulate(%{}, [:cat, :dog], 1)
@@ -53,6 +59,8 @@ defmodule SimpleBayes.Tokenizer do
   end
 
   @doc """
+  Converts a list with a value into a map.
+
   ## Examples
 
       iex> SimpleBayes.Tokenizer.map_values([:cat, :dog], 1)
@@ -70,6 +78,8 @@ defmodule SimpleBayes.Tokenizer do
   end
 
   @doc """
+  Converts a string into a list of words, then with a value into a map.
+
   ## Examples
 
       iex> SimpleBayes.Tokenizer.tokenize_with_values("foo bar", 1)

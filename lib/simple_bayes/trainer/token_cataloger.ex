@@ -2,6 +2,8 @@ defmodule SimpleBayes.Trainer.TokenCataloger do
   alias SimpleBayes.{Tokenizer, Trainer.TokenWeight}
 
   @doc """
+  Catalogs tokens based on their training categories.
+
   ## Examples
 
       iex> SimpleBayes.Trainer.TokenCataloger.catalog(
