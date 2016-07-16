@@ -10,6 +10,9 @@ defmodule SimpleBayes.Tokenizer do
       iex> SimpleBayes.Tokenizer.tokenize("foo bar")
       ["foo", "bar"]
 
+      iex> SimpleBayes.Tokenizer.tokenize(",foo  bar  .")
+      ["foo", "bar"]
+
       iex> SimpleBayes.Tokenizer.tokenize("Foo bAr")
       ["foo", "bar"]
 
