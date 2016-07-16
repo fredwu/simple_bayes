@@ -7,15 +7,21 @@ defmodule SimpleBayes.ClassifierTest do
     data = %SimpleBayes{
       categories: %{
         cat: [trainings: 1, tokens: %{"nice" => 1, "cute" => 1, "cat" => 1}],
-        dog: [trainings: 1, tokens: %{"nice" => 2, "dog" => 2}]
+        dog: [trainings: 3, tokens: %{"nice" => 2, "dog" => 3, "cute" => 3}]
       },
-      trainings: 2,
-      tokens: %{"nice" => 3, "cute" => 1, "cat" => 1, "dog" => 2}
+      trainings: 4,
+      tokens: %{"nice" => 3, "cute" => 4, "cat" => 1, "dog" => 3},
+      tokens_per_training: [
+        {:cat, %{"nice" => 1, "cute" => 1, "cat" => 1}},
+        {:dog, %{"nice" => 2, "dog" => 2}},
+        {:dog, %{"cute" => 1, "dog" => 1}},
+        {:dog, %{"cute" => 2}}
+      ]
     }
 
     {:ok, agent} = Agent.start_link(fn -> data end)
 
-    {:ok, data: data, agent: agent}
+    {:ok, agent: agent}
   end
 
   test ".classify", meta do

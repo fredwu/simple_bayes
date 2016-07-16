@@ -24,4 +24,25 @@ defmodule SimpleBayes.Accumulator do
   def only(map, keys) do
     map |> Map.take(keys) |> all()
   end
+
+  @doc """
+  ## Examples
+
+      iex> SimpleBayes.Accumulator.occurance([
+      iex>   {:cat, %{"nice" => 1, "cute" => 1, "cat" => 1}},
+      iex>   {:dog, %{"nice" => 2, "dog" => 2}}
+      iex> ], "cute")
+      1
+
+      iex> SimpleBayes.Accumulator.occurance([
+      iex>   {:cat, %{"nice" => 1, "cute" => 1, "cat" => 1}},
+      iex>   {:dog, %{"nice" => 2, "dog" => 2}}
+      iex> ], "nice")
+      2
+  """
+  def occurance(list, key) do
+    Enum.reduce(list, 0, fn ({_, map}, acc) ->
+      if Map.has_key?(map, key), do: acc + 1, else: acc
+    end)
+  end
 end
