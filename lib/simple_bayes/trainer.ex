@@ -6,17 +6,17 @@ defmodule SimpleBayes.Trainer do
     TrainingCounter
   }
 
-  def train(agent, category, string, opts) do
-    Agent.get(agent, &(&1))
-    |> TokenParser.parse(string, opts)
-    |> TokenRecorder.record(category, opts)
-    |> TokenCataloger.catalog(category, opts)
-    |> TrainingCounter.increment()
-    |> update(agent)
-  end
+  def train(pid, category, string, opts) do
+    Agent.get_and_update(pid, fn (pid) ->
+      state = pid
+      |> TokenParser.parse(string, opts)
+      |> TokenRecorder.record(category, opts)
+      |> TokenCataloger.catalog(category, opts)
+      |> TrainingCounter.increment()
 
-  defp update(data, agent) do
-    Agent.update(agent, fn (_) -> data end)
-    agent
+      {pid, state}
+    end)
+
+    pid
   end
 end
