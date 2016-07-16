@@ -49,9 +49,9 @@ defmodule SimpleBayes.Classifier do
   end
 
   defp trainings_hit_count_for(cat, tokens_per_training) do
-    tokens_per_training
-    |> Enum.filter(fn ({_cat, tokens}) -> Map.has_key?(tokens, cat) end)
-    |> Enum.count
+    Enum.reduce(tokens_per_training, 0, fn ({_cat, tokens}, acc) ->
+      if Map.has_key?(tokens, cat), do: acc + 1, else: acc
+    end)
   end
 
   defp tf_idf_for(tf, numerator, denominator) do
