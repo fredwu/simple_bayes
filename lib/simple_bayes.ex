@@ -20,16 +20,16 @@ defmodule SimpleBayes do
   )
 
   def init do
-    {:ok, agent} = Agent.start_link fn -> %SimpleBayes{} end
+    {:ok, pid} = Agent.start_link fn -> %SimpleBayes{} end
 
-    agent
+    pid
   end
 
   def default_weight, do: Application.get_env(:simple_bayes, :default_weight) || @default_weight
   def smoothing,      do: Application.get_env(:simple_bayes, :smoothing)      || @smoothing
   def stop_words,     do: Application.get_env(:simple_bayes, :stop_words)     || @stop_words
 
-  defdelegate train(agent, category, string, opts \\ []), to: SimpleBayes.Trainer
-  defdelegate classify(agent, string),                    to: SimpleBayes.Classifier
-  defdelegate classify_one(agent, string),                to: SimpleBayes.Classifier
+  defdelegate train(pid, category, string, opts \\ []), to: SimpleBayes.Trainer
+  defdelegate classify(pid, string),                    to: SimpleBayes.Classifier
+  defdelegate classify_one(pid, string),                to: SimpleBayes.Classifier
 end
