@@ -56,6 +56,17 @@ defmodule SimpleBayesTest do
     assert result == [:apple, :orange, :banana]
   end
 
+  test "string categories" do
+    result = SimpleBayes.init
+             |> SimpleBayes.train("apple", "red", weight: 100)
+             |> SimpleBayes.train("banana", "red", weight: 0.01)
+             |> SimpleBayes.train("orange", "red", weight: 10)
+             |> SimpleBayes.classify("red")
+             |> Keyword.keys()
+
+    assert result == ["apple", "orange", "banana"]
+  end
+
   test "IDF (Inverse Document Frequency)" do
     result = SimpleBayes.init
              |> SimpleBayes.train(:apple, "red red fruit")
