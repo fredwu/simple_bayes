@@ -10,6 +10,9 @@ defmodule SimpleBayes.Tokenizer do
       iex> SimpleBayes.Tokenizer.tokenize("foo bar")
       ["foo", "bar"]
 
+      iex> SimpleBayes.Tokenizer.tokenize("Foo bAr")
+      ["foo", "bar"]
+
       iex> SimpleBayes.Tokenizer.tokenize("foo, bar")
       ["foo", "bar"]
 
@@ -20,7 +23,10 @@ defmodule SimpleBayes.Tokenizer do
       ~w(fo-o's ba_r"ed)
   """
   def tokenize(string) do
-    Regex.replace(~r/[^0-9a-zA-Z _\-'"]+/, string, "") |> String.split()
+    string
+    |> String.downcase()
+    |> String.replace(~r/[^0-9a-zA-Z _\-'"]+/, "")
+    |> String.split()
   end
 
   @doc """
