@@ -8,13 +8,7 @@ defmodule SimpleBayes.TrainerTest do
   end
 
   test ".train", meta do
-    result = meta.agent
-             |> SimpleBayes.train(:cat, "nice cute cat")
-             |> SimpleBayes.train(:dog, "nice dog", weight: 2)
-             |> SimpleBayes.train(:dog, "is cute dog")
-             |> SimpleBayes.train(:dog, "cute cute")
-
-    assert Agent.get(result, &(&1)) == %SimpleBayes{
+    expectation = %SimpleBayes{
       categories: %{
         cat: [trainings: 1, tokens: %{"nice" => 1, "cute" => 1, "cat" => 1}],
         dog: [trainings: 3, tokens: %{"nice" => 2, "dog" => 3, "cute" => 3}]
@@ -28,5 +22,14 @@ defmodule SimpleBayes.TrainerTest do
         {:dog, %{"cute" => 2}}
       ]
     }
+
+    result = meta.agent
+             |> SimpleBayes.train(:cat, "nice cute cat")
+             |> SimpleBayes.train(:dog, "nice dog", weight: 2)
+             |> SimpleBayes.train(:dog, "is cute dog")
+             |> SimpleBayes.train(:dog, "cute cute")
+             |> Agent.get(&(&1))
+
+    assert result == expectation
   end
 end

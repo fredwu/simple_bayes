@@ -24,11 +24,11 @@ defmodule SimpleBayesTest do
     end
 
     test "README example on .classify", meta do
-      assert SimpleBayes.classify(meta.result, "Maybe green maybe red but definitely round and sweet") == [
-        apple:  0.18519202529366116,
-        orange: 0.14447781772131096,
-        banana: 0.10123406763124557
-      ]
+      result = meta.result
+      |> SimpleBayes.classify("Maybe green maybe red but definitely round and sweet")
+      |> Keyword.keys()
+
+      assert result == [:apple, :orange, :banana]
     end
 
     test "README example on .classify_one", meta do
@@ -40,8 +40,9 @@ defmodule SimpleBayesTest do
     result = SimpleBayes.init
              |> SimpleBayes.train(:apple, "it is so red")
              |> SimpleBayes.train(:banana, "it is a bit yellow")
+             |> SimpleBayes.classify_one("it is so much yellow")
 
-    assert SimpleBayes.classify_one(result, "it is so much yellow") == :banana
+    assert result == :banana
   end
 
   test "ordering" do
@@ -50,8 +51,9 @@ defmodule SimpleBayesTest do
              |> SimpleBayes.train(:banana, "red", weight: 0.01)
              |> SimpleBayes.train(:orange, "red", weight: 10)
              |> SimpleBayes.classify("red")
+             |> Keyword.keys()
 
-    assert Keyword.keys(result) == [:apple, :orange, :banana]
+    assert result == [:apple, :orange, :banana]
   end
 
   test "IDF (Inverse Document Frequency)" do

@@ -19,9 +19,10 @@ defmodule SimpleBayes.ClassifierTest do
   end
 
   test ".classify", meta do
-    assert SimpleBayes.classify(meta.agent, "such a nice and cute dog") == [
-      dog: 0.39960988629793276,
-      cat: 0.20472854071377028
-    ]
+    result = meta.agent
+    |> SimpleBayes.classify("such a nice and cute dog")
+    |> Keyword.keys()
+
+    assert result == [:dog, :cat]
   end
 end
