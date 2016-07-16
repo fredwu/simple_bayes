@@ -34,20 +34,20 @@ defmodule SimpleBayes.Accumulator do
 
   ## Examples
 
-      iex> SimpleBayes.Accumulator.occurance([
-      iex>   {:cat, %{"nice" => 1, "cute" => 1, "cat" => 1}},
-      iex>   {:dog, %{"nice" => 2, "dog" => 2}}
-      iex> ], "cute")
+      iex> SimpleBayes.Accumulator.occurance(%{
+      iex>   {:cat, %{"nice" => 1, "cute" => 1, "cat" => 1}} => nil,
+      iex>   {:dog, %{"nice" => 2, "dog" => 2}} => nil
+      iex> }, "cute")
       1
 
-      iex> SimpleBayes.Accumulator.occurance([
-      iex>   {:cat, %{"nice" => 1, "cute" => 1, "cat" => 1}},
-      iex>   {:dog, %{"nice" => 2, "dog" => 2}}
-      iex> ], "nice")
+      iex> SimpleBayes.Accumulator.occurance(%{
+      iex>   {:cat, %{"nice" => 1, "cute" => 1, "cat" => 1}} => nil,
+      iex>   {:dog, %{"nice" => 2, "dog" => 2}} => nil
+      iex> }, "nice")
       2
   """
-  def occurance(list, key) do
-    Enum.reduce(list, 0, fn ({_, map}, acc) ->
+  def occurance(meta_map, key) do
+    Enum.reduce(meta_map, 0, fn ({{_, map}, _}, acc) ->
       if Map.has_key?(map, key), do: acc + 1, else: acc
     end)
   end

@@ -1,5 +1,5 @@
 defmodule SimpleBayes do
-  defstruct categories: %{}, trainings: 0, tokens: %{}, tokens_per_training: []
+  defstruct categories: %{}, trainings: 0, tokens: %{}, tokens_per_training: %{}
 
   @default_weight 1
   @smoothing 0.001

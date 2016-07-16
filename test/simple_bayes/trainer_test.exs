@@ -15,12 +15,12 @@ defmodule SimpleBayes.TrainerTest do
       },
       trainings: 4,
       tokens: %{"nice" => 3, "cute" => 4, "cat" => 1, "dog" => 3},
-      tokens_per_training: [
-        {:cat, %{"nice" => 1, "cute" => 1, "cat" => 1}},
-        {:dog, %{"nice" => 2, "dog" => 2}},
-        {:dog, %{"cute" => 1, "dog" => 1}},
-        {:dog, %{"cute" => 2}}
-      ]
+      tokens_per_training: %{
+        {:cat, %{"nice" => 1, "cute" => 1, "cat" => 1}} => nil,
+        {:dog, %{"nice" => 2, "dog" => 2}} => nil,
+        {:dog, %{"cute" => 1, "dog" => 1}} => nil,
+        {:dog, %{"cute" => 2}} => nil
+      }
     }
 
     result = meta.agent

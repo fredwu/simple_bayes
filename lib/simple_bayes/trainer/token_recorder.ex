@@ -8,43 +8,48 @@ defmodule SimpleBayes.Trainer.TokenRecorder do
 
       iex> SimpleBayes.Trainer.TokenRecorder.record(
       iex>   {
-      iex>     %{"cute" => 1, "dog" => 1},
+      iex>     ["cute", "dog"],
       iex>     %SimpleBayes{}
       iex>   },
       iex>   :dog,
       iex>   %{}
       iex> )
       {
-        %{"cute" => 1, "dog" => 1},
+        ["cute", "dog"],
         %SimpleBayes{
-          tokens_per_training: [dog: %{{"cute", 1} => 1, {"dog", 1} => 1}]
+          tokens_per_training: %{
+            {:dog, %{"cute" => 1, "dog" => 1}} => nil
+          }
         }
       }
 
       iex> SimpleBayes.Trainer.TokenRecorder.record(
       iex>   {
-      iex>     %{"cute" => 1, "good" => 1},
+      iex>     ["good", "dog"],
       iex>     %SimpleBayes{
-      iex>       tokens_per_training: [dog: %{{"cute", 1} => 1, {"dog", 1} => 1}]
+      iex>       tokens_per_training: %{
+      iex>         {:dog, %{"cute" => 1, "dog" => 1}} => nil
+      iex>       }
       iex>     }
       iex>   },
       iex>   :dog,
       iex>   %{}
       iex> )
       {
-        %{"cute" => 1, "good" => 1},
+        ["good", "dog"],
         %SimpleBayes{
-          tokens_per_training: [
-            dog: %{{"cute", 1} => 1, {"dog", 1} => 1},
-            dog: %{{"cute", 1} => 1, {"good", 1} => 1}
-          ]
+          tokens_per_training: %{
+            {:dog, %{"cute" => 1, "dog" => 1}} => nil,
+            {:dog, %{"good" => 1, "dog" => 1}} => nil
+          }
         }
       }
   """
   def record({tokens, data}, category, opts) do
-    tokens_per_training = data.tokens_per_training ++ [
-      {category, tokens_map(tokens, opts)}
-    ]
+    tokens_per_training = Map.merge(
+      data.tokens_per_training,
+      %{{category, tokens_map(tokens, opts)} => nil}
+    )
 
     data = %{data | tokens_per_training: tokens_per_training}
 

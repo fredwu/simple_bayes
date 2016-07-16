@@ -14,12 +14,12 @@ defmodule SimpleBayes.Classifier.Probability do
       iex>     },
       iex>     trainings: 4,
       iex>     tokens: %{"nice" => 3, "cute" => 4, "cat" => 1, "dog" => 3},
-      iex>     tokens_per_training: [
-      iex>       {:cat, %{"nice" => 1, "cute" => 1, "cat" => 1}},
-      iex>       {:dog, %{"nice" => 2, "dog" => 2}},
-      iex>       {:dog, %{"cute" => 1, "dog" => 1}},
-      iex>       {:dog, %{"cute" => 2}}
-      iex>     ]
+      iex>     tokens_per_training: %{
+      iex>       {:cat, %{"nice" => 1, "cute" => 1, "cat" => 1}} => nil,
+      iex>       {:dog, %{"nice" => 2, "dog" => 2}} => nil,
+      iex>       {:dog, %{"cute" => 1, "dog" => 1}} => nil,
+      iex>       {:dog, %{"cute" => 2}} => nil
+      iex>     }
       iex>   },
       iex>   %{"cute" => 4, "good" => 0.001}
       iex> )
