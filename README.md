@@ -62,4 +62,4 @@ config :simple_bayes, stop_words: ~w(
 
 ## License
 
-Licensed under [MIT](http://fredwu.mit-license.org/)
+Licensed under [MIT](http://fredwu.mit-license.org/).
