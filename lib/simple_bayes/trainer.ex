@@ -8,6 +8,8 @@ defmodule SimpleBayes.Trainer do
 
   def train(pid, category, string, opts) do
     Agent.get_and_update(pid, fn (pid) ->
+      opts = Keyword.merge(pid.opts, opts)
+
       state = pid
       |> TokenParser.parse(string, opts)
       |> TokenRecorder.record(category, opts)

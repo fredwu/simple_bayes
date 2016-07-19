@@ -12,7 +12,7 @@ defmodule SimpleBayes.Trainer.TokenCataloger do
       iex>     %SimpleBayes{categories: %{}, trainings: 0, tokens: %{}}
       iex>   },
       iex>   :dog,
-      iex>   %{}
+      iex>   [default_weight: 1]
       iex> )
       %SimpleBayes{
         categories: %{
@@ -30,7 +30,7 @@ defmodule SimpleBayes.Trainer.TokenCataloger do
       iex>     }
       iex>   },
       iex>   :cat,
-      iex>   %{}
+      iex>   [default_weight: 1]
       iex> )
       %SimpleBayes{
         categories: %{
@@ -50,7 +50,7 @@ defmodule SimpleBayes.Trainer.TokenCataloger do
       iex>     }
       iex>   },
       iex>   :cat,
-      iex>   %{}
+      iex>   [default_weight: 1]
       iex> )
       %SimpleBayes{
         categories: %{

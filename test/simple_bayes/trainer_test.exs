@@ -20,8 +20,8 @@ defmodule SimpleBayes.TrainerTest do
         {:dog, %{"nice" => 2, "dog" => 2}} => nil,
         {:dog, %{"cute" => 1, "dog" => 1}} => nil,
         {:dog, %{"cute" => 2}} => nil
-      }
-    }
+      },
+    } |> Map.delete(:opts)
 
     result = meta.agent
              |> SimpleBayes.train(:cat, "nice cute cat")
@@ -29,6 +29,7 @@ defmodule SimpleBayes.TrainerTest do
              |> SimpleBayes.train(:dog, "is cute dog")
              |> SimpleBayes.train(:dog, "cute cute")
              |> Agent.get(&(&1))
+             |> Map.delete(:opts)
 
     assert result == expectation
   end

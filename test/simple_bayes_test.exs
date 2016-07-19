@@ -77,6 +77,15 @@ defmodule SimpleBayesTest do
     assert result[:apple] > result[:banana]
   end
 
+  test "stemming" do
+    result = SimpleBayes.init(stem: true)
+             |> SimpleBayes.train(:apple, "buying apple")
+             |> SimpleBayes.train(:banana, "buy banana")
+             |> SimpleBayes.classify("buy apple")
+
+    assert result[:apple] > result[:banana]
+  end
+
   # https://github.com/jekyll/classifier-reborn/tree/3488245735905187713823ea731fc353634d8763
   describe "interesting and uninteresting" do
     setup do

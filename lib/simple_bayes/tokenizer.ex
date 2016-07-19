@@ -85,16 +85,4 @@ defmodule SimpleBayes.Tokenizer do
       Map.put(acc, k, v)
     end)
   end
-
-  @doc """
-  Converts a string into a list of words, then with a value into a map.
-
-  ## Examples
-
-      iex> SimpleBayes.Tokenizer.tokenize_with_values("foo bar", 1)
-      %{"foo" => 1, "bar" => 1}
-  """
-  def tokenize_with_values(string, value) do
-    tokenize(string) |> map_values(value)
-  end
 end

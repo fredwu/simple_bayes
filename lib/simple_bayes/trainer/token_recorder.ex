@@ -12,7 +12,7 @@ defmodule SimpleBayes.Trainer.TokenRecorder do
       iex>     %SimpleBayes{}
       iex>   },
       iex>   :dog,
-      iex>   %{}
+      iex>   [default_weight: 1]
       iex> )
       {
         ["cute", "dog"],
@@ -33,7 +33,7 @@ defmodule SimpleBayes.Trainer.TokenRecorder do
       iex>     }
       iex>   },
       iex>   :dog,
-      iex>   %{}
+      iex>   [default_weight: 1]
       iex> )
       {
         ["good", "dog"],

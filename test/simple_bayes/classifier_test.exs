@@ -16,7 +16,8 @@ defmodule SimpleBayes.ClassifierTest do
         {:dog, %{"nice" => 2, "dog" => 2}} => nil,
         {:dog, %{"cute" => 1, "dog" => 1}} => nil,
         {:dog, %{"cute" => 2}} => nil
-      }
+      },
+      opts: [smoothing: 0.001]
     }
 
     {:ok, agent} = Agent.start_link(fn -> data end)

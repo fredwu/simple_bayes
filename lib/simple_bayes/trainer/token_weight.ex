@@ -7,13 +7,10 @@ defmodule SimpleBayes.Trainer.TokenWeight do
       iex> SimpleBayes.Trainer.TokenWeight.from(weight: 2)
       2
 
-      iex> SimpleBayes.Trainer.TokenWeight.from(other_opt: 2)
-      1
-
-      iex> SimpleBayes.Trainer.TokenWeight.from(nil)
+      iex> SimpleBayes.Trainer.TokenWeight.from(default_weight: 1)
       1
   """
   def from(opts) do
-    opts[:weight] || SimpleBayes.default_weight
+    opts[:weight] || opts[:default_weight]
   end
 end

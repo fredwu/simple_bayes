@@ -1,8 +1,13 @@
 defmodule SimpleBayes do
-  defstruct categories: %{}, trainings: 0, tokens: %{}, tokens_per_training: %{}
+  defstruct categories: %{},
+            trainings: 0,
+            tokens: %{},
+            tokens_per_training: %{},
+            opts: []
 
   @default_weight 1
   @smoothing 0.001
+  @stem false
   @stop_words ~w(
     a about above after again against all am an and any are aren't as at be
     because been before being below between both but by can't cannot could
@@ -19,17 +24,27 @@ defmodule SimpleBayes do
     you'll you're you've your yours yourself yourselves
   )
 
-  def init do
-    {:ok, pid} = Agent.start_link fn -> %SimpleBayes{} end
+  def default_weight, do: Application.get_env(:simple_bayes, :default_weight) || @default_weight
+  def smoothing,      do: Application.get_env(:simple_bayes, :smoothing)      || @smoothing
+  def stem,           do: Application.get_env(:simple_bayes, :stem)           || @stem
+  def stop_words,     do: Application.get_env(:simple_bayes, :stop_words)     || @stop_words
+
+  def init(opts \\ []) do
+    opts = Keyword.merge([
+      default_weight: default_weight,
+      smoothing:      smoothing,
+      stem:           stem,
+      stop_words:     stop_words
+    ], opts)
+
+    struct = %SimpleBayes{opts: opts}
+
+    {:ok, pid} = Agent.start_link fn -> struct end
 
     pid
   end
 
-  def default_weight, do: Application.get_env(:simple_bayes, :default_weight) || @default_weight
-  def smoothing,      do: Application.get_env(:simple_bayes, :smoothing)      || @smoothing
-  def stop_words,     do: Application.get_env(:simple_bayes, :stop_words)     || @stop_words
-
   defdelegate train(pid, category, string, opts \\ []), to: SimpleBayes.Trainer
-  defdelegate classify(pid, string),                    to: SimpleBayes.Classifier
-  defdelegate classify_one(pid, string),                to: SimpleBayes.Classifier
+  defdelegate classify(pid, string, opts \\ []),        to: SimpleBayes.Classifier
+  defdelegate classify_one(pid, string, opts \\ []),    to: SimpleBayes.Classifier
 end

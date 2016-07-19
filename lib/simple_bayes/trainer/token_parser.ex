@@ -1,5 +1,5 @@
 defmodule SimpleBayes.Trainer.TokenParser do
-  alias SimpleBayes.{Tokenizer, Trainer.TokenWeight}
+  alias SimpleBayes.{Tokenizer, Trainer.TokenWeight, Trainer.TokenStemmer}
 
   @doc """
   Parses a training string into tokens.
@@ -9,7 +9,7 @@ defmodule SimpleBayes.Trainer.TokenParser do
       iex> SimpleBayes.Trainer.TokenParser.parse(
       iex>   %SimpleBayes{},
       iex>   "cute dog",
-      iex>   %{}
+      iex>   [default_weight: 1, stop_words: []]
       iex> )
       {
         ["cute", "dog"],
@@ -19,7 +19,7 @@ defmodule SimpleBayes.Trainer.TokenParser do
       iex> SimpleBayes.Trainer.TokenParser.parse(
       iex>   %SimpleBayes{tokens:  %{"cute" => 1, "cat" => 1}},
       iex>   "cute dog",
-      iex>   %{}
+      iex>   [default_weight: 1, stop_words: []]
       iex> )
       {
         ["cute", "dog"],
@@ -29,7 +29,8 @@ defmodule SimpleBayes.Trainer.TokenParser do
   def parse(data, string, opts) do
     tokens = string
              |> Tokenizer.tokenize()
-             |> Tokenizer.filter_out(SimpleBayes.stop_words)
+             |> Tokenizer.filter_out(opts[:stop_words])
+             |> TokenStemmer.stem(opts[:stem])
 
     data = %{data | tokens: accumulate(data.tokens, tokens, opts)}
 
