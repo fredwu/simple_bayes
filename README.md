@@ -18,11 +18,11 @@ A Simple Bayes (a.k.a. [Naive Bayes](https://en.wikipedia.org/wiki/Naive_Bayes_c
 
 |                    | Multinomial | Binarized multinomial |
 |--------------------|-------------|-----------------------|
-| Stop words         |      ✅     |          ✅           |
-| Additive smoothing |      ✅     |          ✅           |
-| TF-IDF             |      ✅     |                       |
-| Keywords weighting |      ✅     |                       |
-| Stemming           |      ✅     |          ✅           |
+| Stop words         | ✅          | ✅                    |
+| Additive smoothing | ✅          | ✅                    |
+| TF-IDF             | ✅          |                       |
+| Keywords weighting | ✅          |                       |
+| Stemming           | ✅          | ✅                    |
 
 ## Usage
 
