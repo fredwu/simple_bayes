@@ -27,7 +27,7 @@ A Simple Bayes (a.k.a. [Naive Bayes](https://en.wikipedia.org/wiki/Naive_Bayes_c
 ## Usage
 
 ```elixir
-bayes = SimpleBayes.init
+bayes = SimpleBayes.init()
         |> SimpleBayes.train(:apple, "red sweet")
         |> SimpleBayes.train(:apple, "green", weight: 0.5)
         |> SimpleBayes.train(:apple, "round", weight: 2)
@@ -52,7 +52,7 @@ bayes |> SimpleBayes.classify("Maybe green maybe red but definitely round and sw
 With and without word stemming:
 
 ```elixir
-SimpleBayes.init
+SimpleBayes.init()
 |> SimpleBayes.train(:apple, "buying apple")
 |> SimpleBayes.train(:banana, "buy banana")
 |> SimpleBayes.classify("buy apple")
