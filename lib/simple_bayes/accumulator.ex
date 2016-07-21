@@ -9,7 +9,11 @@ defmodule SimpleBayes.Accumulator do
 
       iex> SimpleBayes.Accumulator.all(%{"nice" => 3.5, "cute" => 1, "cat" => 1, "dog" => 2.2})
       7.7
+
+      iex> SimpleBayes.Accumulator.all(%{})
+      1
   """
+  def all(map) when map == %{}, do: 1
   def all(map) do
     map |> Map.values() |> Enum.reduce(&(&1+&2))
   end

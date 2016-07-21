@@ -1,5 +1,5 @@
 defmodule SimpleBayes.Classifier.Probability do
-  alias SimpleBayes.{Accumulator, MapMath, TfIdf}
+  alias SimpleBayes.Classifier.Model
 
   @doc """
   Calculates the probabilities for the categories based on the training set.
@@ -21,38 +21,21 @@ defmodule SimpleBayes.Classifier.Probability do
       iex>       {:dog, %{"cute" => 2}} => nil
       iex>     }
       iex>   },
+      iex>   :multinomial,
       iex>   %{"cute" => 4, "good" => 0.001}
       iex> )
       %{cat: 0.014049480213985624, dog: 0.10077121599138436}
   """
-  def for_collection(data, categories_map) do
+  def for_collection(data, model, categories_map) do
     Map.new(data.categories, fn ({cat, [_, tokens: cat_tokens_map]}) ->
-      probability = probability_of(categories_map, cat_tokens_map, data)
+      probability = case model do
+        :multinomial ->
+          Model.Multinomial.probability_of(categories_map, cat_tokens_map, data)
+        :binarized_multinomial ->
+          Model.BinarizedMultinomial.probability_of(categories_map, cat_tokens_map, data)
+      end
 
       {cat, probability}
-    end)
-  end
-
-  defp probability_of(categories_map, cat_tokens_map, data) do
-    likelihood = likelihood_of(categories_map, cat_tokens_map, data)
-    prior      = MapMath.fraction(cat_tokens_map, data.tokens)
-
-    likelihood * prior
-  end
-
-  defp likelihood_of(categories_map, cat_tokens_map, data) do
-    tokens_map = Map.take(cat_tokens_map, Map.keys(categories_map))
-
-    categories_map
-    |> Map.merge(tokens_map)
-    |> values_with_idf(data.tokens_per_training, data.trainings)
-    |> Enum.reduce(1, &(&1 + &2))
-    |> :math.log10()
-  end
-
-  defp values_with_idf(tokens_map, tokens_list, trainings_count) do
-    Enum.map(tokens_map, fn ({token, weight}) ->
-      TfIdf.call(weight, trainings_count, Accumulator.occurance(tokens_list, token))
     end)
   end
 end

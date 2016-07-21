@@ -10,7 +10,7 @@ defmodule SimpleBayes.Classifier do
     opts = Keyword.merge(data.opts, opts)
 
     data
-    |> Probability.for_collection(category_map(string, opts))
+    |> Probability.for_collection(opts[:model], category_map(string, opts))
     |> Enum.sort(&(elem(&1,1) > elem(&2,1)))
   end
 

@@ -17,6 +17,12 @@ defmodule SimpleBayes.MapMath do
       iex>   %{"nice" => 1, "dog" => 1}
       iex> )
       2.0
+
+      iex> SimpleBayes.MapMath.fraction(
+      iex>   %{},
+      iex>   %{"nice" => 1, "dog" => 1}
+      iex> )
+      0.5
   """
   def fraction(map1, map2) do
     Accumulator.all(map1) / Accumulator.all(map2)

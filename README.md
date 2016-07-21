@@ -4,13 +4,25 @@ A Simple Bayes (a.k.a. [Naive Bayes](https://en.wikipedia.org/wiki/Naive_Bayes_c
 
 ## Features
 
-- [x] Multinomial Naive Bayes algorithm
-- [x] No external dependencies
-- [x] Ignores stop words
-- [x] [Additive smoothing](https://en.wikipedia.org/wiki/Additive_smoothing)
-- [x] [TF-IDF](https://en.wikipedia.org/wiki/Tf-idf)
-- [x] Optional keywords weighting
-- [x] Optional word [stemming](https://en.wikipedia.org/wiki/Stemming) via [Stemmer](https://github.com/fredwu/stemmer)
+- Naive Bayes algorithm with different models
+  - Multinomial
+  - Binarized (boolean) multinomial
+- No external dependencies
+- Ignores stop words
+- [Additive smoothing](https://en.wikipedia.org/wiki/Additive_smoothing)
+- [TF-IDF](https://en.wikipedia.org/wiki/Tf-idf)
+- Optional keywords weighting
+- Optional word [stemming](https://en.wikipedia.org/wiki/Stemming) via [Stemmer](https://github.com/fredwu/stemmer)
+
+### Feature Matrix
+
+|                    | Multinomial | Binarized multinomial |
+|--------------------|-------------|-----------------------|
+| Stop words         |      ✅     |          ✅           |
+| Additive smoothing |      ✅     |          ✅           |
+| TF-IDF             |      ✅     |                       |
+| Keywords weighting |      ✅     |                       |
+| Stemming           |      ✅     |          ✅           |
 
 ## Usage
 
@@ -64,6 +76,7 @@ SimpleBayes.init(stem: true)
 For application wide configuration, in your application's `config/config.exs`:
 
 ```elixir
+config :simple_bayes, model: :multinomial
 config :simple_bayes, default_weight: 1
 config :simple_bayes, smoothing: 0.001
 config :simple_bayes, stem: false
@@ -88,12 +101,18 @@ Alternatively, you may pass in the configuration options when you initialise:
 
 ```elixir
 SimpleBayes.init(
+  model:          :multinomial,
   default_weight: 1,
   smoothing:      0.001,
   stem:           false,
   stop_words:     []
 )
 ```
+
+Available options for `:model` are:
+
+- `:multinomial`
+- `:binarized_multinomial`
 
 ## License
 

@@ -5,9 +5,10 @@ defmodule SimpleBayes do
             tokens_per_training: %{},
             opts: []
 
+  @model          :multinomial
   @default_weight 1
-  @smoothing 0.001
-  @stem false
+  @smoothing      0.001
+  @stem           false
   @stop_words ~w(
     a about above after again against all am an and any are aren't as at be
     because been before being below between both but by can't cannot could
@@ -24,6 +25,7 @@ defmodule SimpleBayes do
     you'll you're you've your yours yourself yourselves
   )
 
+  def model,          do: Application.get_env(:simple_bayes, :model)          || @model
   def default_weight, do: Application.get_env(:simple_bayes, :default_weight) || @default_weight
   def smoothing,      do: Application.get_env(:simple_bayes, :smoothing)      || @smoothing
   def stem,           do: Application.get_env(:simple_bayes, :stem)           || @stem
@@ -31,6 +33,7 @@ defmodule SimpleBayes do
 
   def init(opts \\ []) do
     opts = Keyword.merge([
+      model:          model,
       default_weight: default_weight,
       smoothing:      smoothing,
       stem:           stem,
