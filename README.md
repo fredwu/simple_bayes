@@ -111,7 +111,7 @@ SimpleBayes.init(
 
 Available options for `:model` are:
 
-- `:multinomial`
+- `:multinomial` (default)
 - `:binarized_multinomial`
 
 ## License
