@@ -1,6 +1,6 @@
 defmodule SimpleBayes.Trainer.TokenStemmer do
   @doc """
-  Catalogs tokens based on their training categories.
+  Stems the word, or passes the word through.
 
   ## Examples
 
