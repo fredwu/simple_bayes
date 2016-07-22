@@ -33,6 +33,8 @@ defmodule SimpleBayes.Classifier.Probability do
           Model.Multinomial.probability_of(categories_map, cat_tokens_map, data)
         :binarized_multinomial ->
           Model.BinarizedMultinomial.probability_of(categories_map, cat_tokens_map, data)
+        :bernoulli ->
+          Model.Bernoulli.probability_of(cat, categories_map, data)
       end
 
       {cat, probability}

@@ -7,6 +7,7 @@ A Simple Bayes (a.k.a. [Naive Bayes](https://en.wikipedia.org/wiki/Naive_Bayes_c
 - Naive Bayes algorithm with different models
   - Multinomial
   - Binarized (boolean) multinomial
+  - Bernoulli
 - No external dependencies
 - Ignores stop words
 - [Additive smoothing](https://en.wikipedia.org/wiki/Additive_smoothing)
@@ -16,13 +17,13 @@ A Simple Bayes (a.k.a. [Naive Bayes](https://en.wikipedia.org/wiki/Naive_Bayes_c
 
 ### Feature Matrix
 
-|                    | Multinomial | Binarized multinomial |
-|--------------------|-------------|-----------------------|
-| Stop words         | ✅          | ✅                    |
-| Additive smoothing | ✅          | ✅                    |
-| TF-IDF             | ✅          |                       |
-| Keywords weighting | ✅          |                       |
-| Stemming           | ✅          | ✅                    |
+|                    | Multinomial | Binarized multinomial | Bernoulli |
+|--------------------|-------------|-----------------------|-----------|
+| Stop words         | ✅          | ✅                    | ✅       |
+| Additive smoothing | ✅          | ✅                    |          |
+| TF-IDF             | ✅          |                       |          |
+| Keywords weighting | ✅          |                       |          |
+| Stemming           | ✅          | ✅                    | ✅       |
 
 ## Usage
 
@@ -113,6 +114,7 @@ Available options for `:model` are:
 
 - `:multinomial` (default)
 - `:binarized_multinomial`
+- `:bernoulli`
 
 ## License
 
