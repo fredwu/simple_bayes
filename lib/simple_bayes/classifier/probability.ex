@@ -22,9 +22,9 @@ defmodule SimpleBayes.Classifier.Probability do
       iex>     }
       iex>   },
       iex>   :multinomial,
-      iex>   %{"cute" => 4, "good" => 0.001}
+      iex>   %{"cute" => 4, "good" => 0}
       iex> )
-      %{cat: 0.014049480213985624, dog: 0.10077121599138436}
+      %{cat: 0.013944237739606595, dog: 0.10054155931755744}
   """
   def for_collection(data, model, categories_map) do
     Map.new(data.categories, fn ({cat, [_, tokens: cat_tokens_map]}) ->

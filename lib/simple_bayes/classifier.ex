@@ -18,6 +18,6 @@ defmodule SimpleBayes.Classifier do
     string
     |> Tokenizer.tokenize()
     |> TokenStemmer.stem(opts[:stem])
-    |> Tokenizer.map_values(0)
+    |> Tokenizer.map_values(opts[:smoothing])
   end
 end

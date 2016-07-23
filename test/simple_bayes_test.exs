@@ -55,6 +55,17 @@ defmodule SimpleBayesTest do
       assert result[:apple] == result[:banana]
     end
 
+    test "smoothing" do
+      result = SimpleBayes.init(smoothing: 1)
+               |> SimpleBayes.train("apple", "red")
+               |> SimpleBayes.train("banana", "yellow")
+               |> SimpleBayes.train("orange", "orange")
+               |> SimpleBayes.classify("red")
+               |> Keyword.keys()
+
+      assert result == ["orange", "banana", "apple"]
+    end
+
     test "ordering" do
       result = SimpleBayes.init
                |> SimpleBayes.train(:apple, "red", weight: 100)
@@ -116,6 +127,17 @@ defmodule SimpleBayesTest do
       assert result[:apple] == result[:banana]
     end
 
+    test "smoothing - should be ignored" do
+      result = SimpleBayes.init(model: :binarized_multinomial, smoothing: 1)
+               |> SimpleBayes.train("apple", "red")
+               |> SimpleBayes.train("banana", "yellow")
+               |> SimpleBayes.train("orange", "orange")
+               |> SimpleBayes.classify("red")
+               |> Keyword.keys()
+
+      assert result == ["apple", "orange", "banana"]
+    end
+
     test "ordering" do
       result = SimpleBayes.init(model: :binarized_multinomial)
                |> SimpleBayes.train(:apple, "red green orange")
@@ -127,7 +149,7 @@ defmodule SimpleBayesTest do
       assert result == [:apple, :orange, :banana]
     end
 
-    test "keywords weighting - should ignore" do
+    test "keywords weighting - should be ignored" do
       result = SimpleBayes.init(model: :binarized_multinomial)
                |> SimpleBayes.train(:apple, "red", weight: 100)
                |> SimpleBayes.train(:banana, "red", weight: 0.01)
@@ -138,7 +160,7 @@ defmodule SimpleBayesTest do
       assert result != [:apple, :orange, :banana]
     end
 
-    test "IDF (Inverse Document Frequency) - should ignore" do
+    test "IDF (Inverse Document Frequency) - should be ignored" do
       result = SimpleBayes.init(model: :binarized_multinomial)
                |> SimpleBayes.train(:apple, "red red fruit")
                |> SimpleBayes.train(:banana, "yellow yellow fruit")
@@ -201,6 +223,17 @@ defmodule SimpleBayesTest do
       assert result[:apple] == result[:banana]
     end
 
+    test "smoothing - should be ignored" do
+      result = SimpleBayes.init(model: :bernoulli, smoothing: 1)
+               |> SimpleBayes.train("apple", "red")
+               |> SimpleBayes.train("banana", "yellow")
+               |> SimpleBayes.train("orange", "orange")
+               |> SimpleBayes.classify("red")
+               |> Keyword.keys()
+
+      assert result == ["apple", "orange", "banana"]
+    end
+
     test "ordering" do
       result = SimpleBayes.init(model: :bernoulli)
                |> SimpleBayes.train(:apple, "red green orange")
@@ -212,7 +245,7 @@ defmodule SimpleBayesTest do
       assert result == [:apple, :orange, :banana]
     end
 
-    test "keywords weighting - should ignore" do
+    test "keywords weighting - should be ignored" do
       result = SimpleBayes.init(model: :bernoulli)
                |> SimpleBayes.train(:apple, "red", weight: 100)
                |> SimpleBayes.train(:banana, "red", weight: 0.01)
@@ -223,7 +256,7 @@ defmodule SimpleBayesTest do
       assert result != [:apple, :orange, :banana]
     end
 
-    test "IDF (Inverse Document Frequency) - should ignore" do
+    test "IDF (Inverse Document Frequency) - should be ignored" do
       result = SimpleBayes.init(model: :bernoulli)
                |> SimpleBayes.train(:apple, "red red fruit")
                |> SimpleBayes.train(:banana, "yellow yellow fruit")

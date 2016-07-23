@@ -7,7 +7,7 @@ defmodule SimpleBayes do
 
   @model          :multinomial
   @default_weight 1
-  @smoothing      0.001
+  @smoothing      0
   @stem           false
   @stop_words ~w(
     a about above after again against all am an and any are aren't as at be

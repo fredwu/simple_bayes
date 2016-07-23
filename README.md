@@ -85,7 +85,7 @@ For application wide configuration, in your application's `config/config.exs`:
 ```elixir
 config :simple_bayes, model: :multinomial
 config :simple_bayes, default_weight: 1
-config :simple_bayes, smoothing: 0.001
+config :simple_bayes, smoothing: 0
 config :simple_bayes, stem: false
 config :simple_bayes, stop_words: ~w(
   a about above after again against all am an and any are aren't as at be
@@ -110,7 +110,7 @@ Alternatively, you may pass in the configuration options when you initialise:
 SimpleBayes.init(
   model:          :multinomial,
   default_weight: 1,
-  smoothing:      0.001,
+  smoothing:      0,
   stem:           false,
   stop_words:     []
 )

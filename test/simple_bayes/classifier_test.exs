@@ -19,7 +19,7 @@ defmodule SimpleBayes.ClassifierTest do
       },
       opts: [
         model:     :multinomial,
-        smoothing: 0.001
+        smoothing: 0
       ]
     }
 
