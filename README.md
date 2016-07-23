@@ -116,6 +116,10 @@ Available options for `:model` are:
 - `:binarized_multinomial`
 - `:bernoulli`
 
+## Changelog
+
+Please see [CHANGELOG.md](CHANGELOG.md).
+
 ## License
 
 Licensed under [MIT](http://fredwu.mit-license.org/).
