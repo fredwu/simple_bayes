@@ -1,3 +1,5 @@
+# Simple Bayes Changelog
+
 ## v0.7.0 [2016-07-23]
 
 - Implemented Bernoulli model
