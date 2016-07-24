@@ -349,4 +349,28 @@ defmodule SimpleBayesTest do
       assert SimpleBayes.classify_one(meta.result, "what do I need to kill rats and mice") == :cat
     end
   end
+
+  # http://fredwu.me/post/147855522498/i-accidentally-some-machine-learning-my-story-of
+  test "my blog post example" do
+    result = SimpleBayes.init
+             |> SimpleBayes.train(:ruby, "I enjoyed using Rails and ActiveRecord for the most part.")
+             |> SimpleBayes.train(:ruby, "The Ruby community is awesome.")
+             |> SimpleBayes.train(:ruby, "There is a new framework called Hanami that's promising.")
+             |> SimpleBayes.train(:ruby, "Please learn Ruby before you learn Rails.")
+             |> SimpleBayes.train(:ruby, "We use Rails at work.")
+             |> SimpleBayes.train(:elixir, "It has Phoenix which is a Rails-like framework.")
+             |> SimpleBayes.train(:elixir, "Its author is a Rails core member, Jose Valim.")
+             |> SimpleBayes.train(:elixir, "Phoenix and Rails are on many levels, comparable.")
+             |> SimpleBayes.train(:elixir, "Phoenix has great performance.")
+             |> SimpleBayes.train(:elixir, "I love Elixir.")
+             |> SimpleBayes.train(:php, "I haven't written any PHP in years.")
+             |> SimpleBayes.train(:php, "The PHP framework Laravel is inspired by Rails.")
+             |> SimpleBayes.classify("I wrote some Rails code at work today.")
+
+    assert result == [
+      ruby:   0.20761437345986136,
+      elixir: 0.08101868169313056,
+      php:    0.019047884912605735
+    ]
+  end
 end
