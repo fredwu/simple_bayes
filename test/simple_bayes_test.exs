@@ -366,11 +366,8 @@ defmodule SimpleBayesTest do
              |> SimpleBayes.train(:php, "I haven't written any PHP in years.")
              |> SimpleBayes.train(:php, "The PHP framework Laravel is inspired by Rails.")
              |> SimpleBayes.classify("I wrote some Rails code at work today.")
+             |> Keyword.keys()
 
-    assert result == [
-      ruby:   0.20761437345986136,
-      elixir: 0.08101868169313056,
-      php:    0.019047884912605735
-    ]
+    assert result == [:ruby, :elixir, :php]
   end
 end
