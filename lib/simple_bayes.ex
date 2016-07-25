@@ -7,7 +7,8 @@ defmodule SimpleBayes do
 
   @model          :multinomial
   @storage        :memory
-  @storage_config []
+  @namespace      nil
+  @file_path      ""
   @default_weight 1
   @smoothing      0
   @stem           false
@@ -34,7 +35,8 @@ defmodule SimpleBayes do
 
   def model,          do: Application.get_env(:simple_bayes, :model)          || @model
   def storage,        do: Application.get_env(:simple_bayes, :storage)        || @storage
-  def storage_config, do: Application.get_env(:simple_bayes, :storage_config) || @storage_config
+  def namespace,      do: Application.get_env(:simple_bayes, :namespace)      || @namespace
+  def file_path,      do: Application.get_env(:simple_bayes, :file_path)      || @file_path
   def default_weight, do: Application.get_env(:simple_bayes, :default_weight) || @default_weight
   def smoothing,      do: Application.get_env(:simple_bayes, :smoothing)      || @smoothing
   def stem,           do: Application.get_env(:simple_bayes, :stem)           || @stem
@@ -44,7 +46,8 @@ defmodule SimpleBayes do
     opts = Keyword.merge([
       model:          model,
       storage:        storage,
-      storage_config: storage_config,
+      namespace:      namespace,
+      file_path:      file_path,
       default_weight: default_weight,
       smoothing:      smoothing,
       stem:           stem,

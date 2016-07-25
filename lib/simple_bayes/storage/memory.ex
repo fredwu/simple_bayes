@@ -2,9 +2,9 @@ defmodule SimpleBayes.Storage.Memory do
   @behaviour SimpleBayes.Storage.Behaviour
 
   def init(struct, opts) do
-    {:ok, pid} = case namespace(opts) do
+    {:ok, pid} = case opts[:namespace] do
       nil -> Agent.start_link(fn -> struct end)
-      _   -> Agent.start_link(fn -> struct end, name: namespace(opts))
+      _   -> Agent.start_link(fn -> struct end, name: opts[:namespace])
     end
 
     pid
@@ -15,10 +15,6 @@ defmodule SimpleBayes.Storage.Memory do
   end
 
   def load(opts) do
-    namespace(opts)
-  end
-
-  defp namespace(opts) do
-    opts[:namespace] || opts[:storage_config][:namespace]
+    opts[:namespace]
   end
 end

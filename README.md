@@ -81,7 +81,7 @@ SimpleBayes.init(stem: true)
 # ]
 ```
 
-### Configuration (Optional)
+## Configuration (Optional)
 
 For application wide configuration, in your application's `config/config.exs`:
 
@@ -121,50 +121,69 @@ SimpleBayes.init(
 )
 ```
 
-#### Available options for `:model` are:
+### Available options for `:model` are:
 
 - `:multinomial` (default)
 - `:binarized_multinomial`
 - `:bernoulli`
 
-#### Available options for `:storage` are:
+### Available options for `:storage` are:
 
 - `:memory` (default)
 - `:file_system`
 
-Some storage options have extra configurations available via `:storage_config`:
+Some storage options have extra configurations:
 
-##### Memory
+#### Memory
 
 - `:namespace` - optional, it's only useful when you want to `load` by the namespace
 
-##### File system
+#### File system
 
 - `:file_path`
 
-#### Examples
-
-Please use `:storage_config` when setting application-wide configuration, otherwise you may use the varies configuration options directly. See below for some examples.
+#### Configuration Examples
 
 ```elixir
 # application-wide configuration:
 config :simple_bayes, storage: :file_system
-config :simple_bayes, storage_config: [file_path: "path/to/the/file.txt"]
+config :simple_bayes, file_path: "path/to/the/file.txt"
 
-# initialization configuration:
-SimpleBayes.init(
-  storage: :file_system,
-  storage_config: [
-    file_path: "path/to/the/file.txt"
-  ]
-)
-
-# initialization configuration (alternative):
+# per-initialization configuration:
 SimpleBayes.init(
   storage: :file_system,
   file_path: "path/to/the/file.txt"
 )
 ```
+
+#### Storage Usage
+
+```elixir
+opts = [
+  storage:   :file_system,
+  file_path: "test/temp/file_sysmte_test.txt"
+]
+
+SimpleBayes.init(opts)
+|> SimpleBayes.train(:apple, "red sweet")
+|> SimpleBayes.train(:apple, "green", weight: 0.5)
+|> SimpleBayes.train(:apple, "round", weight: 2)
+|> SimpleBayes.train(:banana, "sweet")
+|> SimpleBayes.save()
+
+SimpleBayes.load(opts)
+|> SimpleBayes.train(:banana, "green", weight: 0.5)
+|> SimpleBayes.train(:banana, "yellow long", weight: 2)
+|> SimpleBayes.train(:orange, "red")
+|> SimpleBayes.train(:orange, "yellow sweet", weight: 0.5)
+|> SimpleBayes.train(:orange, "round", weight: 2)
+|> SimpleBayes.save()
+
+SimpleBayes.load(opts)
+|> SimpleBayes.classify("Maybe green maybe red but definitely round and sweet")
+```
+
+Note: Calling `SimpleBayes.save()` is unnecessary for `:memory` storage.
 
 ## Changelog
 
