@@ -1,13 +1,13 @@
-defmodule SimpleBayes.Storage.MemoryTest do
+defmodule SimpleBayes.Storage.FileSystemTest do
   use ExUnit.Case, async: true
 
-  doctest SimpleBayes.Storage.Memory
+  doctest SimpleBayes.Storage.FileSystem
 
-  describe "memory storage" do
+  describe "file system storage" do
     setup do
       opts = [
-        storage:        :memory,
-        storage_config: [namespace: :memory_test]
+        storage:        :file_system,
+        storage_config: [file_path: "test/temp/file_sysmte_test.txt"]
       ]
 
       SimpleBayes.init(opts)
@@ -44,11 +44,11 @@ defmodule SimpleBayes.Storage.MemoryTest do
     end
   end
 
-  describe "memory storage with flattened configuration options" do
+  describe "file system storage with flattened configuration options" do
     setup do
       opts = [
-        storage:   :memory,
-        namespace: :memory_test
+        storage:   :file_system,
+        file_path: "test/temp/file_sysmte_test.txt"
       ]
 
       SimpleBayes.init(opts)

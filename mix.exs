@@ -19,8 +19,8 @@ defmodule SimpleBayes.Mixfile do
 
   defp deps do
     [
-      {:ex_doc, ">= 0.0.0", only: :dev},
-      {:stemmer, "~> 1.0.0-beta.1"},
+      {:ex_doc,  ">= 0.0.0", only: :dev},
+      {:stemmer, "~> 1.0.0-beta.1"}
     ]
   end
 

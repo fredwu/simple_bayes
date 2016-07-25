@@ -10,6 +10,10 @@ defmodule SimpleBayes.Storage.Memory do
     pid
   end
 
+  def save(pid, _data) do
+    pid
+  end
+
   def load(opts) do
     namespace(opts)
   end

@@ -56,6 +56,12 @@ defmodule SimpleBayes do
     @storages[opts[:storage]].init(struct, opts)
   end
 
+  def save(pid) do
+    struct = Agent.get(pid, &(&1))
+
+    @storages[struct.opts[:storage]].save(pid, struct)
+  end
+
   def load(opts \\ []) do
     @storages[opts[:storage]].load(opts)
   end

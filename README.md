@@ -84,6 +84,7 @@ For application wide configuration, in your application's `config/config.exs`:
 
 ```elixir
 config :simple_bayes, model: :multinomial
+config :simple_bayes, storage: :memory
 config :simple_bayes, default_weight: 1
 config :simple_bayes, smoothing: 0
 config :simple_bayes, stem: false
@@ -109,6 +110,7 @@ Alternatively, you may pass in the configuration options when you initialise:
 ```elixir
 SimpleBayes.init(
   model:          :multinomial,
+  storage:        :memory,
   default_weight: 1,
   smoothing:      0,
   stem:           false,
@@ -116,11 +118,42 @@ SimpleBayes.init(
 )
 ```
 
-Available options for `:model` are:
+#### Available options for `:model` are:
 
 - `:multinomial` (default)
 - `:binarized_multinomial`
 - `:bernoulli`
+
+#### Available options for `:storage` are:
+
+- `:memory` (default)
+- `:file_system`
+
+Some storage options have extra configurations available via `:storage_config`:
+
+- `:memory`
+  - `:namespace` - optional, it's only useful when you want to `load` by the namespace
+- `:file_system`
+  - `:file_path`
+
+Please use `:storage_config` when setting application-wide configuration, otherwise you may use the varies configuration options directly. See below for some examples.
+
+```elixir
+config :simple_bayes, storage: :file_system
+config :simple_bayes, storage_config: [file_path: "path/to/the/file.txt"]
+
+SimpleBayes.init(
+  storage: :file_system,
+  storage_config: [
+    file_path: "path/to/the/file.txt"
+  ]
+)
+
+SimpleBayes.init(
+  storage: :file_system,
+  file_path: "path/to/the/file.txt"
+)
+```
 
 ## Changelog
 

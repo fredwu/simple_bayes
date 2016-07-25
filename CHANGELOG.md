@@ -1,5 +1,10 @@
 # Simple Bayes Changelog
 
+## master
+
+- Introduced the storage mechanism (defaults to `:memory`)
+- Implemented file system storage
+
 ## v0.7.1 [2016-07-23]
 
 - Adjusted the `:smoothing` option
