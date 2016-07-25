@@ -6,6 +6,8 @@ defmodule SimpleBayes do
             opts: []
 
   @model          :multinomial
+  @storage        :memory
+  @storage_config []
   @default_weight 1
   @smoothing      0
   @stem           false
@@ -25,7 +27,14 @@ defmodule SimpleBayes do
     you'll you're you've your yours yourself yourselves
   )
 
+  @storages %{
+    memory:      SimpleBayes.Storage.Memory,
+    file_system: SimpleBayes.Storage.FileSystem
+  }
+
   def model,          do: Application.get_env(:simple_bayes, :model)          || @model
+  def storage,        do: Application.get_env(:simple_bayes, :storage)        || @storage
+  def storage_config, do: Application.get_env(:simple_bayes, :storage_config) || @storage_config
   def default_weight, do: Application.get_env(:simple_bayes, :default_weight) || @default_weight
   def smoothing,      do: Application.get_env(:simple_bayes, :smoothing)      || @smoothing
   def stem,           do: Application.get_env(:simple_bayes, :stem)           || @stem
@@ -34,6 +43,8 @@ defmodule SimpleBayes do
   def init(opts \\ []) do
     opts = Keyword.merge([
       model:          model,
+      storage:        storage,
+      storage_config: storage_config,
       default_weight: default_weight,
       smoothing:      smoothing,
       stem:           stem,
@@ -42,9 +53,11 @@ defmodule SimpleBayes do
 
     struct = %SimpleBayes{opts: opts}
 
-    {:ok, pid} = Agent.start_link fn -> struct end
+    @storages[opts[:storage]].init(struct, opts)
+  end
 
-    pid
+  def load(opts \\ []) do
+    @storages[opts[:storage]].load(opts)
   end
 
   defdelegate train(pid, category, string, opts \\ []), to: SimpleBayes.Trainer
