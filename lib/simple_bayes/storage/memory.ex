@@ -1,4 +1,6 @@
 defmodule SimpleBayes.Storage.Memory do
+  @behaviour SimpleBayes.Storage.Behaviour
+
   def init(struct, opts) do
     {:ok, pid} = case namespace(opts) do
       nil -> Agent.start_link(fn -> struct end)
