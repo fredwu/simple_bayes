@@ -20,6 +20,9 @@ A Simple Bayes (a.k.a. [Naive Bayes](https://en.wikipedia.org/wiki/Naive_Bayes_c
 - [TF-IDF](https://en.wikipedia.org/wiki/Tf-idf)
 - Optional keywords weighting
 - Optional word [stemming](https://en.wikipedia.org/wiki/Stemming) via [Stemmer](https://github.com/fredwu/stemmer)
+- Multiple storage options
+  - In-memory (default)
+  - File system
 
 ### Feature Matrix
 
