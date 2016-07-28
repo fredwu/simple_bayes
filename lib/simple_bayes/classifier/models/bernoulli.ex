@@ -18,9 +18,9 @@ defmodule SimpleBayes.Classifier.Model.Bernoulli do
         |> Enum.count()
 
       value = if Map.has_key?(categories_map, token) do
-        (token_in_trainings + 1)
+        token_in_trainings + 1
       else
-        (denominator_base - (token_in_trainings + 1))
+        denominator_base - (token_in_trainings + 1)
       end
 
       value * acc
