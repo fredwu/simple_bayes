@@ -1,6 +1,6 @@
 # Simple Bayes Changelog
 
-## master
+## v0.9.0 [2016-08-04]
 
 - Added `top` option for restricting number of results
 - Added `encoded_data` option for use with custom storages
