@@ -2,7 +2,7 @@ defmodule SimpleBayes.Classifier do
   alias SimpleBayes.{Classifier.Probability, Tokenizer, Trainer.TokenStemmer}
 
   def classify_one(pid, string, opts) do
-    classify(pid, string, opts) |> Enum.at(0) |> elem(0)
+    classify(pid, string, opts) |> Enum.at(0) |> Kernel.elem(0)
   end
 
   def classify(pid, string, opts) do
@@ -11,7 +11,7 @@ defmodule SimpleBayes.Classifier do
 
     data
     |> Probability.for_collection(opts[:model], category_map(string, opts))
-    |> Enum.sort(&(elem(&1,1) > elem(&2,1)))
+    |> Enum.sort(&(Kernel.elem(&1,1) > Kernel.elem(&2,1)))
   end
 
   defp category_map(string, opts) do
