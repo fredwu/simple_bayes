@@ -34,16 +34,6 @@ defmodule SimpleBayes do
     file_system: SimpleBayes.Storage.FileSystem
   }
 
-  def model,          do: Application.get_env(:simple_bayes, :model)          || @model
-  def storage,        do: Application.get_env(:simple_bayes, :storage)        || @storage
-  def namespace,      do: Application.get_env(:simple_bayes, :namespace)      || @namespace
-  def file_path,      do: Application.get_env(:simple_bayes, :file_path)      || @file_path
-  def default_weight, do: Application.get_env(:simple_bayes, :default_weight) || @default_weight
-  def smoothing,      do: Application.get_env(:simple_bayes, :smoothing)      || @smoothing
-  def stem,           do: Application.get_env(:simple_bayes, :stem)           || @stem
-  def top,            do: Application.get_env(:simple_bayes, :top)            || @top
-  def stop_words,     do: Application.get_env(:simple_bayes, :stop_words)     || @stop_words
-
   def init(opts \\ []) do
     opts = Keyword.merge([
       model:          model,
@@ -77,4 +67,14 @@ defmodule SimpleBayes do
   defdelegate train(pid, category, string, opts \\ []), to: SimpleBayes.Trainer
   defdelegate classify(pid, string, opts \\ []),        to: SimpleBayes.Classifier
   defdelegate classify_one(pid, string, opts \\ []),    to: SimpleBayes.Classifier
+
+  defp model,          do: Application.get_env(:simple_bayes, :model)          || @model
+  defp storage,        do: Application.get_env(:simple_bayes, :storage)        || @storage
+  defp namespace,      do: Application.get_env(:simple_bayes, :namespace)      || @namespace
+  defp file_path,      do: Application.get_env(:simple_bayes, :file_path)      || @file_path
+  defp default_weight, do: Application.get_env(:simple_bayes, :default_weight) || @default_weight
+  defp smoothing,      do: Application.get_env(:simple_bayes, :smoothing)      || @smoothing
+  defp stem,           do: Application.get_env(:simple_bayes, :stem)           || @stem
+  defp top,            do: Application.get_env(:simple_bayes, :top)            || @top
+  defp stop_words,     do: Application.get_env(:simple_bayes, :stop_words)     || @stop_words
 end
