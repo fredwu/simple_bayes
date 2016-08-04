@@ -12,6 +12,7 @@ defmodule SimpleBayes do
   @default_weight 1
   @smoothing      0
   @stem           false
+  @top            nil
   @stop_words ~w(
     a about above after again against all am an and any are aren't as at be
     because been before being below between both but by can't cannot could
@@ -40,6 +41,7 @@ defmodule SimpleBayes do
   def default_weight, do: Application.get_env(:simple_bayes, :default_weight) || @default_weight
   def smoothing,      do: Application.get_env(:simple_bayes, :smoothing)      || @smoothing
   def stem,           do: Application.get_env(:simple_bayes, :stem)           || @stem
+  def top,            do: Application.get_env(:simple_bayes, :top)            || @top
   def stop_words,     do: Application.get_env(:simple_bayes, :stop_words)     || @stop_words
 
   def init(opts \\ []) do
@@ -51,6 +53,7 @@ defmodule SimpleBayes do
       default_weight: default_weight,
       smoothing:      smoothing,
       stem:           stem,
+      top:            top,
       stop_words:     stop_words
     ], opts)
 

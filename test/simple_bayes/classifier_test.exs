@@ -35,4 +35,12 @@ defmodule SimpleBayes.ClassifierTest do
 
     assert result == [:dog, :cat]
   end
+
+  test ".classify with `top` option", meta do
+    result = meta.agent
+    |> SimpleBayes.classify("such a nice and cute dog", top: 1)
+    |> Keyword.keys()
+
+    assert result == [:dog]
+  end
 end

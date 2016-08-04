@@ -57,6 +57,12 @@ bayes |> SimpleBayes.classify("Maybe green maybe red but definitely round and sw
 #   orange: 0.14447781772131096,
 #   banana: 0.10123406763124557
 # ]
+
+bayes |> SimpleBayes.classify("Maybe green maybe red but definitely round and sweet.", top: 2)
+# => [
+#   apple:  0.18519202529366116,
+#   orange: 0.14447781772131096,
+# ]
 ```
 
 With and without word stemming:
@@ -91,6 +97,7 @@ config :simple_bayes, storage: :memory
 config :simple_bayes, default_weight: 1
 config :simple_bayes, smoothing: 0
 config :simple_bayes, stem: false
+config :simple_bayes, top: nil
 config :simple_bayes, stop_words: ~w(
   a about above after again against all am an and any are aren't as at be
   because been before being below between both but by can't cannot could
@@ -117,6 +124,7 @@ SimpleBayes.init(
   default_weight: 1,
   smoothing:      0,
   stem:           false,
+  top:            nil,
   stop_words:     []
 )
 ```
