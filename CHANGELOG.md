@@ -1,5 +1,9 @@
 # Simple Bayes Changelog
 
+## master
+
+- Added `top` option for restricting number of results
+
 ## v0.8.0 [2016-07-26]
 
 - Introduced the storage mechanism (defaults to `:memory`)
