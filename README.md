@@ -137,7 +137,7 @@ SimpleBayes.init(
 
 ### Available options for `:storage` are:
 
-- `:memory` (default)
+- `:memory` (default, can also be used by any database, [see below](#in-memory-save2-load1-and-the-encoded_data-option) for more details)
 - `:file_system`
 
 Some storage options have extra configurations:
