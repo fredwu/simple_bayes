@@ -3,6 +3,7 @@
 ## master
 
 - Added `top` option for restricting number of results
+- Added `encoded_data` option for use with custom storages
 
 ## v0.8.0 [2016-07-26]
 

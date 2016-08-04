@@ -10,9 +10,11 @@ defmodule SimpleBayes.Storage.FileSystem do
   end
 
   def save(pid, struct) do
-    File.write!(struct.opts[:file_path], Data.encode(struct))
+    encoded_data = Data.encode(struct)
 
-    pid
+    File.write!(struct.opts[:file_path], encoded_data)
+
+    {:ok, pid, encoded_data}
   end
 
   def load(opts) do

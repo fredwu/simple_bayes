@@ -1,6 +1,8 @@
 defmodule SimpleBayes.Storage.Memory do
   @behaviour SimpleBayes.Storage.Behaviour
 
+  alias SimpleBayes.Data
+
   def init(struct, opts) do
     {:ok, pid} = case opts[:namespace] do
       nil -> Agent.start_link(fn -> struct end)
@@ -10,11 +12,10 @@ defmodule SimpleBayes.Storage.Memory do
     pid
   end
 
-  def save(pid, _data) do
-    pid
+  def save(pid, struct) do
+    {:ok, pid, Data.encode(struct)}
   end
 
-  def load(opts) do
-    opts[:namespace]
-  end
+  def load(encoded_data: data), do: data |> Data.decode() |> init([])
+  def load(opts),               do: opts[:namespace]
 end

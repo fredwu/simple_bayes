@@ -191,7 +191,29 @@ SimpleBayes.load(opts)
 |> SimpleBayes.classify("Maybe green maybe red but definitely round and sweet")
 ```
 
-Note: Calling `SimpleBayes.save()` is unnecessary for `:memory` storage.
+#### In-memory `save/2`, `load/1` and the `encoded_data` option
+
+Calling `SimpleBayes.save/2` is unnecessary for `:memory` storage. However, when using the in-memory storage, you are able to get the encoded data - this is useful if you would like to store the encoded data in your persistence of choice. For example:
+
+```elixir
+{:ok, _pid, encoded_data} = SimpleBayes.init()
+|> SimpleBayes.train(:apple, "red sweet")
+|> SimpleBayes.train(:apple, "green", weight: 0.5)
+|> SimpleBayes.train(:apple, "round", weight: 2)
+|> SimpleBayes.train(:banana, "sweet")
+|> SimpleBayes.save()
+
+# now store `encoded_data` in your database of choice
+# once `encoded_data` is fetched again from the database, you are then able to:
+
+SimpleBayes.load(encoded_data: encoded_data)
+|> SimpleBayes.train(:banana, "green", weight: 0.5)
+|> SimpleBayes.train(:banana, "yellow long", weight: 2)
+|> SimpleBayes.train(:orange, "red")
+|> SimpleBayes.train(:orange, "yellow sweet", weight: 0.5)
+|> SimpleBayes.train(:orange, "round", weight: 2)
+|> SimpleBayes.classify("Maybe green maybe red but definitely round and sweet")
+```
 
 ## Changelog
 

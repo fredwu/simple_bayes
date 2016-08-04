@@ -69,7 +69,9 @@ defmodule SimpleBayes do
   end
 
   def load(opts \\ []) do
-    @storages[opts[:storage]].load(opts)
+    storage = opts[:storage] || :memory
+
+    @storages[storage].load(opts)
   end
 
   defdelegate train(pid, category, string, opts \\ []), to: SimpleBayes.Trainer
