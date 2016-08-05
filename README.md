@@ -1,6 +1,6 @@
 # Simple Bayes [![Travis](https://img.shields.io/travis/fredwu/simple_bayes.svg)](https://travis-ci.org/fredwu/simple_bayes) [![Hex.pm](https://img.shields.io/hexpm/v/simple_bayes.svg)](https://hex.pm/packages/simple_bayes)
 
-A Simple Bayes / [Naive Bayes](https://en.wikipedia.org/wiki/Naive_Bayes_classifier) implementation in Elixir.
+A [Naive Bayes](https://en.wikipedia.org/wiki/Naive_Bayes_classifier) machine learning implementation in Elixir.
 
 > In machine learning, __naive Bayes classifiers__ are a family of simple probabilistic classifiers based on applying Bayes' theorem with strong (naive) independence assumptions between the features.
 
