@@ -32,7 +32,7 @@ defmodule SimpleBayes do
   @storages %{
     memory:      SimpleBayes.Storage.Memory,
     file_system: SimpleBayes.Storage.FileSystem,
-    dets:        SimpleBayes.Storage.DETS
+    dets:        SimpleBayes.Storage.Dets
   }
 
   def init(opts \\ []) do

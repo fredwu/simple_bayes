@@ -22,7 +22,7 @@ A Simple Bayes / [Naive Bayes](https://en.wikipedia.org/wiki/Naive_Bayes_classif
 - Multiple storage options
   - In-memory (default)
   - File system
-  - [DETS](http://erlang.org/doc/man/dets.html) (Disk-based Erlang Term Storage)
+  - [Dets](http://erlang.org/doc/man/dets.html) (Disk-based Erlang Term Storage)
 
 ### Feature Matrix
 
@@ -151,7 +151,7 @@ Some storage options have extra configurations:
 
 - `:file_path`
 
-#### DETS
+#### Dets
 
 - `:file_path`
 

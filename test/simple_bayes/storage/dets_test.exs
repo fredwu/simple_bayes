@@ -1,7 +1,7 @@
-defmodule SimpleBayes.Storage.DETSTest do
+defmodule SimpleBayes.Storage.DetsTest do
   use ExUnit.Case, async: true
 
-  doctest SimpleBayes.Storage.DETS
+  doctest SimpleBayes.Storage.Dets
 
   describe "dets storage" do
     setup do

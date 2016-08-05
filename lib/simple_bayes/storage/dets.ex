@@ -1,4 +1,4 @@
-defmodule SimpleBayes.Storage.DETS do
+defmodule SimpleBayes.Storage.Dets do
   @behaviour SimpleBayes.Storage.Behaviour
 
   def init(struct, opts) do
