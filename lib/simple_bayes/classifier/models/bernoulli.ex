@@ -4,9 +4,13 @@ defmodule SimpleBayes.Classifier.Model.Bernoulli do
     denominator_base = cat_trainings + 2
 
     numerator   = cat_trainings * category_numerator(category, denominator_base, categories_map, data)
-    denominator = data.trainings * :math.pow(denominator_base, Kernel.map_size(data.tokens))
+    denominator = data.trainings * Math.pow(denominator_base, Kernel.map_size(data.tokens))
 
-    numerator / denominator
+    {result, _} = Decimal.div(Decimal.new(numerator), Decimal.new(denominator))
+    |> Decimal.to_string()
+    |> Float.parse()
+
+    result
   end
 
   defp category_numerator(category, denominator_base, categories_map, data) do

@@ -1,3 +1,5 @@
-%{"earmark": {:hex, :earmark, "1.0.1", "2c2cd903bfdc3de3f189bd9a8d4569a075b88a8981ded9a0d95672f6e2b63141", [:mix], []},
+%{"decimal": {:hex, :decimal, "1.1.2", "79a769d4657b2d537b51ef3c02d29ab7141d2b486b516c109642d453ee08e00c", [:mix], []},
+  "earmark": {:hex, :earmark, "1.0.1", "2c2cd903bfdc3de3f189bd9a8d4569a075b88a8981ded9a0d95672f6e2b63141", [:mix], []},
   "ex_doc": {:hex, :ex_doc, "0.13.0", "aa2f8fe4c6136a2f7cfc0a7e06805f82530e91df00e2bff4b4362002b43ada65", [:mix], [{:earmark, "~> 1.0", [hex: :earmark, optional: false]}]},
+  "math": {:hex, :math, "0.2.0", "e7d94733ef0f3a9051a7de58a8f30aa13bee4c7824020580a39dd19174f9cadc", [:mix], []},
   "stemmer": {:hex, :stemmer, "1.0.0", "f39cc4a8ee63eb2b39daa3d43e4dafef42087e24c2f6fafea0be6e6ba2ecf862", [:mix], []}}

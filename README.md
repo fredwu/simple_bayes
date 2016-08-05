@@ -14,7 +14,6 @@ A Simple Bayes / [Naive Bayes](https://en.wikipedia.org/wiki/Naive_Bayes_classif
   - Multinomial
   - Binarized (boolean) multinomial
   - Bernoulli
-- No external dependencies
 - Ignores stop words
 - [Additive smoothing](https://en.wikipedia.org/wiki/Additive_smoothing)
 - [TF-IDF](https://en.wikipedia.org/wiki/Tf-idf)

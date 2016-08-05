@@ -17,12 +17,14 @@ defmodule SimpleBayes.Mixfile do
   end
 
   def application do
-    [applications: [:logger, :stemmer]]
+    [applications: [:logger, :math, :decimal, :stemmer]]
   end
 
   defp deps do
     [
       {:ex_doc,  ">= 0.0.0", only: :dev},
+      {:math,    ">= 0.0.0"},
+      {:decimal, ">= 0.0.0"},
       {:stemmer, "~> 1.0.0"}
     ]
   end
