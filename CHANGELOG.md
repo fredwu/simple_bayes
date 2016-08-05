@@ -2,6 +2,7 @@
 
 ## master
 
+- Implemented `:dets` storage option
 - Fixed Bernoulli model's float overflow when dealing with large amount of data
 
 ## v0.9.0 [2016-08-04]

@@ -14,7 +14,7 @@ defmodule SimpleBayes.Storage.FileSystem do
 
     File.write!(struct.opts[:file_path], encoded_data)
 
-    {:ok, pid, encoded_data}
+    {:ok, pid, nil}
   end
 
   def load(opts) do

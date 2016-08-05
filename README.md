@@ -22,6 +22,7 @@ A Simple Bayes / [Naive Bayes](https://en.wikipedia.org/wiki/Naive_Bayes_classif
 - Multiple storage options
   - In-memory (default)
   - File system
+  - [DETS](http://erlang.org/doc/man/dets.html) (Disk-based Erlang Term Storage)
 
 ### Feature Matrix
 
@@ -138,6 +139,7 @@ SimpleBayes.init(
 
 - `:memory` (default, can also be used by any database, [see below](#in-memory-save2-load1-and-the-encoded_data-option) for more details)
 - `:file_system`
+- `:dets`
 
 Some storage options have extra configurations:
 
@@ -146,6 +148,10 @@ Some storage options have extra configurations:
 - `:namespace` - optional, it's only useful when you want to `load` by the namespace
 
 #### File system
+
+- `:file_path`
+
+#### DETS
 
 - `:file_path`
 
