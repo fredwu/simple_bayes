@@ -1,7 +1,7 @@
 defmodule SimpleBayes.MultinomialTest do
   use ExUnit.Case, async: true
 
-  alias SimpleBayes.ModelHelper
+  alias SimpleBayes.Test.ModelHelper
 
   describe "multinomial" do
     test "stop words" do

@@ -1,7 +1,7 @@
 defmodule SimpleBayes.BinarizedMultinomialTest do
   use ExUnit.Case, async: true
 
-  alias SimpleBayes.ModelHelper
+  alias SimpleBayes.Test.ModelHelper
 
   describe "Binarized multinomial" do
     test "binary word counting" do

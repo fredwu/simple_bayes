@@ -1,7 +1,7 @@
 defmodule SimpleBayes.BernoulliTest do
   use ExUnit.Case, async: true
 
-  alias SimpleBayes.ModelHelper
+  alias SimpleBayes.Test.ModelHelper
 
   describe "Bernoulli" do
     # http://nlp.stanford.edu/IR-book/html/htmledition/naive-bayes-text-classification-1.html
