@@ -14,15 +14,15 @@ A [Naive Bayes](https://en.wikipedia.org/wiki/Naive_Bayes_classifier) machine le
   - Multinomial
   - Binarized (boolean) multinomial
   - Bernoulli
+- Multiple storage options
+  - In-memory (default)
+  - File system
+  - [Dets](http://erlang.org/doc/man/dets.html) (Disk-based Erlang Term Storage)
 - Ignores stop words
 - [Additive smoothing](https://en.wikipedia.org/wiki/Additive_smoothing)
 - [TF-IDF](https://en.wikipedia.org/wiki/Tf-idf)
 - Optional keywords weighting
 - Optional word [stemming](https://en.wikipedia.org/wiki/Stemming) via [Stemmer](https://github.com/fredwu/stemmer)
-- Multiple storage options
-  - In-memory (default)
-  - File system
-  - [Dets](http://erlang.org/doc/man/dets.html) (Disk-based Erlang Term Storage)
 
 ### Feature Matrix
 
@@ -141,19 +141,23 @@ SimpleBayes.init(
 - `:file_system`
 - `:dets`
 
-Some storage options have extra configurations:
+Storage options have extra configurations:
 
 #### Memory
 
 - `:namespace` - optional, it's only useful when you want to `load` by the namespace
 
-#### File system
+#### File System
 
 - `:file_path`
 
 #### Dets
 
 - `:file_path`
+
+#### File System vs Dets
+
+File system encodes and decodes data using base64, whereas Dets is a native Erlang library. Performance wise file system with base64 tends to be faster with less data, and Dets faster with more data. YMMV, please do your own comparison.
 
 #### Configuration Examples
 
