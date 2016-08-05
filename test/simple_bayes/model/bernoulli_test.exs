@@ -1,12 +1,7 @@
 defmodule SimpleBayes.BernoulliTest do
   use ExUnit.Case, async: true
 
-  def train(sbayes, cat, [head | tail]) do
-    sbayes = SimpleBayes.train(sbayes, cat, head)
-    train(sbayes, cat, tail)
-  end
-
-  def train(sbayes, _cat, []), do: sbayes
+  alias SimpleBayes.ModelHelper
 
   describe "Bernoulli" do
     # http://nlp.stanford.edu/IR-book/html/htmledition/naive-bayes-text-classification-1.html
@@ -20,29 +15,6 @@ defmodule SimpleBayes.BernoulliTest do
 
       assert result[:yes] == 324/62500
       assert result[:no] == 64/2916
-    end
-
-    test "float overflow in calculations" do
-      result = SimpleBayes.init(model: :bernoulli)
-               |> SimpleBayes.train(:apple, "red red green fruit")
-               |> SimpleBayes.train(:banana, "yellow green fruit")
-               |> SimpleBayes.train(:orange, "orange yellow fruit")
-
-      list = for _ <- 1..20 do
-        Enum.join([
-          Faker.Address.street_address(true),
-          Faker.App.author,
-          Faker.Bitcoin.address,
-          Faker.Commerce.product_name,
-          Faker.Company.bs,
-          Faker.Company.catch_phrase
-        ], " ")
-      end
-
-      result = train(result, :strawberry, list)
-      |> SimpleBayes.classify("red yellow fruit")
-
-      assert result[:apple] == result[:banana]
     end
 
     test "binary word counting" do
@@ -124,6 +96,29 @@ defmodule SimpleBayes.BernoulliTest do
                |> SimpleBayes.classify("buy apple")
 
       assert result[:apple] > result[:banana]
+    end
+
+    test "float overflow in calculations" do
+      result = SimpleBayes.init(model: :bernoulli)
+               |> SimpleBayes.train(:apple, "red red green fruit")
+               |> SimpleBayes.train(:banana, "yellow green fruit")
+               |> SimpleBayes.train(:orange, "orange yellow fruit")
+
+      list = for _ <- 1..20 do
+        Enum.join([
+          Faker.Address.street_address(true),
+          Faker.App.author,
+          Faker.Bitcoin.address,
+          Faker.Commerce.product_name,
+          Faker.Company.bs,
+          Faker.Company.catch_phrase
+        ], " ")
+      end
+
+      result = ModelHelper.train_list(result, :strawberry, list)
+      |> SimpleBayes.classify("red yellow fruit")
+
+      assert result[:apple] == result[:banana]
     end
   end
 end

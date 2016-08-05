@@ -1,6 +1,8 @@
 defmodule SimpleBayes.BinarizedMultinomialTest do
   use ExUnit.Case, async: true
 
+  alias SimpleBayes.ModelHelper
+
   describe "Binarized multinomial" do
     test "binary word counting" do
       result = SimpleBayes.init(model: :binarized_multinomial)
@@ -81,6 +83,29 @@ defmodule SimpleBayes.BinarizedMultinomialTest do
                |> SimpleBayes.classify("buy apple")
 
       assert result[:apple] > result[:banana]
+    end
+
+    test "float overflow in calculations" do
+      result = SimpleBayes.init(model: :binarized_multinomial)
+               |> SimpleBayes.train(:apple, "red red green fruit")
+               |> SimpleBayes.train(:banana, "yellow green fruit")
+               |> SimpleBayes.train(:orange, "orange yellow fruit")
+
+      list = for _ <- 1..20 do
+        Enum.join([
+          Faker.Address.street_address(true),
+          Faker.App.author,
+          Faker.Bitcoin.address,
+          Faker.Commerce.product_name,
+          Faker.Company.bs,
+          Faker.Company.catch_phrase
+        ], " ")
+      end
+
+      result = ModelHelper.train_list(result, :strawberry, list)
+      |> SimpleBayes.classify("red yellow fruit")
+
+      assert result[:apple] == result[:banana]
     end
   end
 end
