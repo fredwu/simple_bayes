@@ -1,6 +1,6 @@
 # Simple Bayes Changelog
 
-## master
+## v0.10.0 [2016-08-09]
 
 - Implemented `:dets` storage option
 - Fixed Bernoulli model's float overflow when dealing with large amount of data
