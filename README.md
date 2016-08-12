@@ -91,7 +91,7 @@ bayes |> SimpleBayes.classify("Maybe green maybe red but definitely round and sw
 # ]
 ```
 
-With and without word stemming:
+With and without word stemming (requires a stem function, we recommend [Stemmer](https://github.com/fredwu/stemmer)):
 
 ```elixir
 SimpleBayes.init()
@@ -103,7 +103,7 @@ SimpleBayes.init()
 #   apple: 0.05719389206673358
 # ]
 
-SimpleBayes.init(stem: &Stemmer.stem/1)
+SimpleBayes.init(stem: &Stemmer.stem/1) # Or any other stemming function
 |> SimpleBayes.train(:apple, "buying apple")
 |> SimpleBayes.train(:banana, "buy banana")
 |> SimpleBayes.classify("buy apple")
