@@ -77,7 +77,7 @@ defmodule SimpleBayes.BinarizedMultinomialTest do
     end
 
     test "stemming" do
-      result = SimpleBayes.init(model: :binarized_multinomial, stem: true)
+      result = SimpleBayes.init(model: :binarized_multinomial, stem: &Stemmer.stem/1)
                |> SimpleBayes.train(:apple, "buying apple")
                |> SimpleBayes.train(:banana, "buy banana")
                |> SimpleBayes.classify("buy apple")

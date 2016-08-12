@@ -55,7 +55,7 @@ defmodule SimpleBayes.MultinomialTest do
     end
 
     test "stemming" do
-      result = SimpleBayes.init(stem: true)
+      result = SimpleBayes.init(stem: &Stemmer.stem/1)
                |> SimpleBayes.train(:apple, "buying apple")
                |> SimpleBayes.train(:banana, "buy banana")
                |> SimpleBayes.classify("buy apple")
