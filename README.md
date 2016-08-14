@@ -43,7 +43,7 @@ stemming functionality) to `deps` in your
 ```elixir
 defp deps do
   [
-    {:simple_bayes, "~> 0.10.0"},
+    {:simple_bayes, "~> 0.11.0"},
     {:stemmer,      "~> 1.0"}
   ]
 end
