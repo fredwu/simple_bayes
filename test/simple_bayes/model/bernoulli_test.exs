@@ -90,7 +90,7 @@ defmodule SimpleBayes.BernoulliTest do
     end
 
     test "stemming" do
-      result = SimpleBayes.init(model: :bernoulli, stem: true)
+      result = SimpleBayes.init(model: :bernoulli, stem: &Stemmer.stem/1)
                |> SimpleBayes.train(:apple, "buying apple")
                |> SimpleBayes.train(:banana, "buy banana")
                |> SimpleBayes.classify("buy apple")
