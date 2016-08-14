@@ -11,5 +11,5 @@ defmodule SimpleBayes.Trainer.TokenStemmer do
       "buy"
   """
   def stem(word, stemmer) when is_function(stemmer), do: stemmer.(word)
-  def stem(word, _), do: word
+  def stem(word, _),                                 do: word
 end

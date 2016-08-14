@@ -36,13 +36,15 @@ A [Naive Bayes](https://en.wikipedia.org/wiki/Naive_Bayes_classifier) machine le
 
 ## Usage
 
-Install by adding `:simple_bayes` and optionally `:stemmer` to `deps` in your
+Install by adding `:simple_bayes` and optionally `:stemmer` (for the default
+stemming functionality) to `deps` in your
 `mix.exs`:
 
 ```elixir
 defp deps do
-  [ {:simple_bayes, "~> 0.10.0"},
-    {:stemmer, "~> 1.0"} # Optional, if you want to use stemming
+  [
+    {:simple_bayes, "~> 0.10.0"},
+    {:stemmer,      "~> 1.0"}
   ]
 end
 ```
@@ -52,15 +54,9 @@ application:
 
 ```elixir
 def application do
-  [ applications: [
-      :logger,
-      :simple_bayes,
-      :stemmer # Optional, if you want to use stemming
-    ]
-  ]
+  [applications: [:logger, :simple_bayes, :stemmer]]
 end
 ```
-
 
 ```elixir
 bayes = SimpleBayes.init()
@@ -103,7 +99,7 @@ SimpleBayes.init()
 #   apple: 0.05719389206673358
 # ]
 
-SimpleBayes.init(stem: &Stemmer.stem/1) # Or any other stemming function
+SimpleBayes.init(stem: &Stemmer.stem/1) # or any other stemming function
 |> SimpleBayes.train(:apple, "buying apple")
 |> SimpleBayes.train(:banana, "buy banana")
 |> SimpleBayes.classify("buy apple")
@@ -122,7 +118,7 @@ config :simple_bayes, model: :multinomial
 config :simple_bayes, storage: :memory
 config :simple_bayes, default_weight: 1
 config :simple_bayes, smoothing: 0
-config :simple_bayes, stem: false # or a stemming function
+config :simple_bayes, stem: false
 config :simple_bayes, top: nil
 config :simple_bayes, stop_words: ~w(
   a about above after again against all am an and any are aren't as at be
@@ -149,7 +145,7 @@ SimpleBayes.init(
   storage:        :memory,
   default_weight: 1,
   smoothing:      0,
-  stem:           false, # or a stemming function
+  stem:           false,
   top:            nil,
   stop_words:     []
 )
