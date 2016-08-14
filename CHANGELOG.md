@@ -1,5 +1,9 @@
 # Simple Bayes Changelog
 
+## v0.11.0 [2016-08-15]
+
+- The `:stem` option now accepts any stemming function (still defaults to `false`) - thanks [@duijf](https://github.com/duijf)!
+
 ## v0.10.0 [2016-08-09]
 
 - Implemented `:dets` storage option
