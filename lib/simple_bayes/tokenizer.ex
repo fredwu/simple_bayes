@@ -32,6 +32,13 @@ defmodule SimpleBayes.Tokenizer do
     |> String.split()
   end
 
+  def tokenize(string, :cyrillic) do
+    string
+    |> String.downcase()
+    |> String.replace(~r/[^0-9a-zа-яґієї _\-'"]+/iu, "")
+    |> String.split()
+  end
+
   @doc """
   Filters out a list based on another list.
 
