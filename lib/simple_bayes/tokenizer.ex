@@ -24,46 +24,36 @@ defmodule SimpleBayes.Tokenizer do
 
       iex> SimpleBayes.Tokenizer.tokenize(~s(fo-o's ba_r"ed.))
       ~w(fo-o's ba_r"ed)
-  """
-  def tokenize(string) do
-    string
-    |> String.downcase()
-    |> String.replace(~r/[^0-9a-zA-Z _\-'"]+/, "")
-    |> String.split()
-  end
 
-  @doc """
-  Converts a cyrilic string into a list of words.
-
-  ## Examples
-
-      iex> SimpleBayes.Tokenizer.tokenize("шевченко", :cyrillic)
+      iex> SimpleBayes.Tokenizer.tokenize("шевченко")
       ["шевченко"]
 
-      iex> SimpleBayes.Tokenizer.tokenize("слава Україні", :cyrillic)
+      iex> SimpleBayes.Tokenizer.tokenize("слава Україні")
       ["слава", "україні"]
 
-      iex> SimpleBayes.Tokenizer.tokenize(",воля або  смерть  .", :cyrillic)
+      iex> SimpleBayes.Tokenizer.tokenize(",воля або  смерть  .")
       ["воля", "або", "смерть"]
 
-      iex> SimpleBayes.Tokenizer.tokenize("Крим це Україна", :cyrillic)
+      iex> SimpleBayes.Tokenizer.tokenize("Крим це Україна")
       ["крим", "це", "україна"]
 
-      iex> SimpleBayes.Tokenizer.tokenize("співуча, солов'їна", :cyrillic)
+      iex> SimpleBayes.Tokenizer.tokenize("співуча, солов'їна")
       ["співуча", "солов'їна"]
 
-      iex> SimpleBayes.Tokenizer.tokenize("паляниця запашна.", :cyrillic)
+      iex> SimpleBayes.Tokenizer.tokenize("паляниця запашна.")
       ["паляниця", "запашна"]
 
-      iex> SimpleBayes.Tokenizer.tokenize(~s(де-не-де будь ласка "світлина". незабаром! Київ - моє місто), :cyrillic)
+      iex> SimpleBayes.Tokenizer.tokenize(~s(де-не-де будь ласка "світлина". незабаром! Київ - моє місто))
       ["де-не-де", "будь", "ласка", "\\"світлина\\"", "незабаром", "київ", "-", "моє", "місто"]
+
   """
-  def tokenize(string, :cyrillic) do
+  def tokenize(string) do
     string
     |> String.downcase()
     |> String.replace(~r/[^0-9a-zа-яґієї _\-'"]+/iu, "")
     |> String.split()
   end
+
 
   @doc """
   Filters out a list based on another list.
