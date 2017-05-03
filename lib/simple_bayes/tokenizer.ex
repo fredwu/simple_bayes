@@ -32,6 +32,32 @@ defmodule SimpleBayes.Tokenizer do
     |> String.split()
   end
 
+  @doc """
+  Converts a cyrilic string into a list of words.
+
+  ## Examples
+
+      iex> SimpleBayes.Tokenizer.tokenize("шевченко", :cyrillic)
+      ["шевченко"]
+
+      iex> SimpleBayes.Tokenizer.tokenize("слава Україні", :cyrillic)
+      ["слава", "україні"]
+
+      iex> SimpleBayes.Tokenizer.tokenize(",воля або  смерть  .", :cyrillic)
+      ["воля", "або", "смерть"]
+
+      iex> SimpleBayes.Tokenizer.tokenize("Крим це Україна", :cyrillic)
+      ["крим", "це", "україна"]
+
+      iex> SimpleBayes.Tokenizer.tokenize("співуча, солов'їна", :cyrillic)
+      ["співуча", "солов'їна"]
+
+      iex> SimpleBayes.Tokenizer.tokenize("паляниця запашна.", :cyrillic)
+      ["паляниця", "запашна"]
+
+      iex> SimpleBayes.Tokenizer.tokenize(~s(де-не-де будь ласка "світлина". незабаром! Київ - моє місто), :cyrillic)
+      ["де-не-де", "будь", "ласка", "\\"світлина\\"", "незабаром", "київ", "-", "моє", "місто"]
+  """
   def tokenize(string, :cyrillic) do
     string
     |> String.downcase()
