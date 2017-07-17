@@ -42,9 +42,12 @@ defmodule SimpleBayes.Tokenizer do
 
       iex> SimpleBayes.Tokenizer.filter_out(["foo", "bar", "baz"], ["baz", "bazz"])
       ["foo", "bar"]
+
+      iex> SimpleBayes.Tokenizer.filter_out(["foo", "bar", "baz", "baz"], ["baz"])
+      ["foo", "bar"]
   """
   def filter_out(list, filter_list) do
-    list -- filter_list
+    Enum.reject list, &(&1 in filter_list)
   end
 
   @doc """
