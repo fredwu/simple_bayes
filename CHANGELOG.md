@@ -1,5 +1,9 @@
 # Simple Bayes Changelog
 
+## v0.12.0 [2017-07-18]
+
+- Multiple instances of stop-words are now correctly ignored - thanks [@claytongentry](https://github.com/claytongentry)!
+
 ## v0.11.0 [2016-08-15]
 
 - The `:stem` option now accepts any stemming function (still defaults to `false`) - thanks [@duijf](https://github.com/duijf)!
