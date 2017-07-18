@@ -37,15 +37,15 @@ defmodule SimpleBayes do
 
   def init(opts \\ []) do
     opts = Keyword.merge([
-      model:          model,
-      storage:        storage,
-      namespace:      namespace,
-      file_path:      file_path,
-      default_weight: default_weight,
-      smoothing:      smoothing,
-      stem:           stem,
-      top:            top,
-      stop_words:     stop_words
+      model:          model(),
+      storage:        storage(),
+      namespace:      namespace(),
+      file_path:      file_path(),
+      default_weight: default_weight(),
+      smoothing:      smoothing(),
+      stem:           stem(),
+      top:            top(),
+      stop_words:     stop_words()
     ], opts)
 
     struct = %SimpleBayes{opts: opts}
