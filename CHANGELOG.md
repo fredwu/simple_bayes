@@ -1,6 +1,6 @@
 # Simple Bayes Changelog
 
-## v0.12.0 [2017-07-18]
+## v0.12.1 [2017-07-18]
 
 - Multiple instances of stop-words are now correctly ignored - thanks [@claytongentry](https://github.com/claytongentry)!
 
