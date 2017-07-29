@@ -1,5 +1,9 @@
 # Simple Bayes Changelog
 
+## v1.0.0 [2017-07-30]
+
+- Given the library has been "feature complete" for a year now, let's bump it up to 1.0! :D
+
 ## v0.12.2 [2017-07-30]
 
 - Updated dependencies
