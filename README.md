@@ -43,14 +43,14 @@ stemming functionality) to `deps` in your
 ```elixir
 defp deps do
   [
-    {:simple_bayes, "~> 0.11.0"},
+    {:simple_bayes, "~> 0.12"},
     {:stemmer,      "~> 1.0"}
   ]
 end
 ```
 
-Ensure `:simple_bayes` and optionally `:stemmer` are started before your
-application:
+If you're on Elixir 1.3 or below, ensure `:simple_bayes` and optionally
+`:stemmer` are started before your application:
 
 ```elixir
 def application do
