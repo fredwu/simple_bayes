@@ -1,4 +1,4 @@
-# Simple Bayes [![Travis](https://img.shields.io/travis/fredwu/simple_bayes.svg)](https://travis-ci.org/fredwu/simple_bayes) [![Coverage](https://coveralls.io/repos/github/fredwu/simple_bayes/badge.svg?branch=master)](https://coveralls.io/github/fredwu/simple_bayes?branch=master) [![Hex.pm](https://img.shields.io/hexpm/v/simple_bayes.svg)](https://hex.pm/packages/simple_bayes)
+# Simple Bayes [![Travis](https://img.shields.io/travis/fredwu/simple_bayes.svg)](https://travis-ci.org/fredwu/simple_bayes) [![Coverage](https://img.shields.io/coveralls/fredwu/simple_bayes.svg)](https://coveralls.io/github/fredwu/simple_bayes?branch=master) [![Hex.pm](https://img.shields.io/hexpm/v/simple_bayes.svg)](https://hex.pm/packages/simple_bayes)
 
 A [Naive Bayes](https://en.wikipedia.org/wiki/Naive_Bayes_classifier) machine learning implementation in Elixir.
 
